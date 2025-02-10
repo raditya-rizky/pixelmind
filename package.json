@@ -1,0 +1,18 @@
+{
+  "name": "pixelmind",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.3",
+    "astro": "^5.2.5",
+    "astro-icon": "^1.1.5",
+    "gsap": "^3.12.7",
+    "tailwindcss": "^4.0.3"
+  }
+}

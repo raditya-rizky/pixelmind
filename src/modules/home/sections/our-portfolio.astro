@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+import InvertedRadCard from '@components/inverted-rad-card.astro';
+---
+
+<section
+	id='card'
+	class='bg-primary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
+	<div class='mx-auto px-[120px] py-[100px]'>
+		<h3 class='font-[700] font-display text-[53px] text-white'>
+			<span>Our</span>
+			<span class="block after:text-accent after:content-['.']">
+				Portfolio
+			</span>
+		</h3>
+
+		<div class='gap-8 grid grid-cols-3 mt-20'>
+			{
+				[1, 2, 3].map((item) => (
+					<InvertedRadCard
+						ctaHeight='60px'
+						ctaWidth='80px'
+						innerRadius={36}>
+						<div class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px]' />
+						<div
+							class='bg-white flex h-10 items-center justify-center rounded-full w-10'
+							slot='cta-content'>
+							<Icon name='arrow-right' />
+						</div>
+					</InvertedRadCard>
+				))
+			}
+		</div>
+
+		<div class='gap-8 grid grid-cols-2 mt-[60px]'>
+			<InvertedRadCard
+				ctaHeight='60px'
+				ctaWidth='80px'
+				innerRadius={36}>
+				<div
+					class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[344px]'>
+				</div>
+				<div
+					class='bg-white flex h-10 items-center justify-center rounded-full w-10'
+					slot='cta-content'>
+					<Icon name='arrow-right' />
+				</div>
+			</InvertedRadCard>
+			<InvertedRadCard
+				height='100%'
+				offsetX={80}
+				ctaHeight='60px'>
+				<div
+					class='backdrop-blur-lg bg-white/10 flex h-full items-center px-[60px]'>
+					<h4
+						class='font-[700] font-display leading-[64px] text-[40px] text-white'>
+						<span>View All Our</span>
+						<span class='block'> Works</span>
+					</h4>
+				</div>
+				<div
+					class='flex h-[40px] items-center justify-center mr-5'
+					slot='cta-content'>
+					<a
+						href='/'
+						class='font-display leading-[38px] text-white underline'>
+						View All
+					</a>
+				</div>
+			</InvertedRadCard>
+		</div>
+	</div>
+</section>
