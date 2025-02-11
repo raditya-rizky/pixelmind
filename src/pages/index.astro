@@ -2,9 +2,11 @@
 import OurMotto from '@modules/home/sections/our-motto.astro';
 import OurProducts from '@modules/home/sections/our-products.astro';
 import OurServices from '@modules/home/sections/our-services.astro';
-import HomePage from '@modules/home/index.astro';
+import Hero from '@modules/home/sections/hero.astro';
 import Layout from '@layouts/Layout.astro';
 import OurPortfolio from '@modules/home/sections/our-portfolio.astro';
+import Testimonials from '@modules/home/sections/testimonials.astro';
+import Form from '@modules/home/sections/form';
 ---
 
 <script>
@@ -32,12 +34,14 @@ import OurPortfolio from '@modules/home/sections/our-portfolio.astro';
 
 <Layout>
 	<section id='home-page'>
-		<HomePage />
+		<Hero />
 
 		<!-- Each one of these components has id of "card" -->
 		<OurProducts />
 		<OurServices />
 		<OurMotto />
 		<OurPortfolio />
+		<Testimonials />
+		<Form client:idle />
 	</section>
 </Layout>
