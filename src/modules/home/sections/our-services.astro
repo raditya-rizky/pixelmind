@@ -1,13 +1,46 @@
 ---
 import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
+
+const services = [
+	{
+		title: 'Strategy and Design',
+		icon: 'arrow-right',
+		list: ['Logo Design', 'Branding', 'Web Design', 'Mobile App Design'],
+		image: '/hero-background.png',
+	},
+	{
+		title: 'Coding and Implementation',
+		icon: 'arrow-right',
+		list: [
+			'Website Development',
+			'Web Application Development',
+			'Mobile App Development',
+			'E-Commerce',
+		],
+		image: '/hero-background.png',
+	},
+	{
+		title: 'Growth and Marketing',
+		icon: 'arrow-right',
+		list: [
+			'SEO',
+			'Social Media Marketing',
+			'Email Marketing',
+			'Web Based Advertising',
+		],
+		image: '/hero-background.png',
+	},
+];
 ---
 
 <section
 	id='card'
 	class='bg-primary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
 	<div class='mx-auto px-[120px] py-[100px]'>
-		<h3 class='font-[700] font-display text-[53px] text-white'>
+		<h3
+			id='target'
+			class='font-[700] font-display text-[53px] text-white w-fit'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Services
@@ -16,8 +49,9 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 
 		<div class='gap-8 grid grid-cols-3 mt-20'>
 			{
-				[1, 2, 3].map((item) => (
+				services.map((service) => (
 					<InvertedRadCard
+						tiltEffect
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
@@ -25,7 +59,7 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 							<div class='flex flex-col gap-6 p-8'>
 								<div class='flex items-center justify-between'>
 									<p class='font-[700] max-w-[212px] text-2xl text-white'>
-										Strategy and Design
+										{service.title}
 									</p>
 									<svg
 										width='48'
@@ -78,18 +112,19 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 									</svg>
 								</div>
 								<ul class='list-disc list-inside text-white'>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
+									{service.list.map((item) => (
+										<li>{item}</li>
+									))}
 								</ul>
 								<InvertedRadCard>
-									<div class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[195px]' />
+									<div
+										class={`bg-[url(${service.image})] bg-cover bg-center min-h-[195px]`}
+									/>
 								</InvertedRadCard>
 							</div>
 						</div>
 						<div
-							class='bg-white flex h-10 items-center justify-center rounded-full w-10'
+							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black transition w-10 hover:bg-accent hover:!text-white'
 							slot='cta-content'>
 							<Icon name='arrow-right' />
 						</div>

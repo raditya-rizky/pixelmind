@@ -1,6 +1,3 @@
-import { Icon } from 'astro-icon/components';
-import InvertedRadCard from '@components/inverted-rad-card.astro';
-
 export default function Form() {
 	return (
 		<section
@@ -8,7 +5,7 @@ export default function Form() {
 			className='bg-accent min-h-auto -mt-24 overflow-hidden pb-[100px] relative !rounded-se-[100px] !rounded-ss-[100px]'>
 			<div className='absolute bg-black/60 h-full top-0 w-full'></div>
 			<div className='mx-auto max-w-[1054px] py-[100px] relative w-full'>
-				<h3 className='font-[700] font-display text-[53px] text-white'>
+				<h3 id="target" className='font-[700] font-display text-[53px] text-white w-fit'>
 					<span>Let's work</span>
 					<span className='block'>together</span>
 				</h3>
@@ -18,30 +15,25 @@ export default function Form() {
 						<div className=' gap-x-6 gap-y-20 grid grid-cols-2'>
 
 							<div className='col-span-1 relative'>
-								<input type='text' id='firstName' name='firstName' className='pt-4 peer mt-1 block border-b border-white text-white w-full z-10 relative pl-2 !focus:ring-0' placeholder=' ' />
-								<label htmlFor='firstName' className='absolute left-2 -top-2.5 text-white transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white peer-focus:-top-8 peer-focus:text-[14px] peer-focus:text-white'>First Name</label>
+								<input type='text' id='firstName' name='firstName' className='block border-b border-white mt-1 pl-2 py-4 text-white w-full focus:outline-none focus:ring-0 placeholder:text-white' placeholder='First Name *' />
 							</div>
 							<div className='col-span-1 relative'>
-								<input type='text' id='lastName' name='lastName' className='pt-4 peer mt-1 block border-b border-white text-white w-full z-10 relative pl-2 !focus:ring-0' placeholder=' ' />
-								<label htmlFor='lastName' className='absolute left-2 -top-2.5 text-white transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white peer-focus:-top-8 peer-focus:text-[14px] peer-focus:text-white'>Last Name</label>
+								<input type='text' id='lastName' name='lastName' className='block border-b border-white mt-1 pl-2 py-4 text-white w-full focus:outline-none focus:ring-0 placeholder:text-white' placeholder='Last Name *' />
 							</div>
 							<div className='col-span-1 relative'>
-								<input type='email' id='email' name='email' className='pt-4 peer mt-1 block border-b border-white text-white w-full z-10 relative pl-2 !focus:ring-0' placeholder=' ' />
-								<label htmlFor='email' className='absolute left-2 -top-2.5 text-white transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white peer-focus:-top-8 peer-focus:text-[14px] peer-focus:text-white'>Email Address</label>
+								<input type='text' id='email' name='email' className='block border-b border-white mt-1 pl-2 py-4 text-white w-full focus:outline-none focus:ring-0 placeholder:text-white' placeholder='Email Address *' />
 							</div>
 							<div className='col-span-1 relative'>
-								<input type='text' id='companyName' name='companyName' className='pt-4 peer mt-1 block border-b border-white text-white w-full z-10 relative pl-2 !focus:ring-0' placeholder=' ' />
-								<label htmlFor='companyName' className='absolute left-2 -top-2.5 text-white transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white peer-focus:-top-8 peer-focus:text-[14px] peer-focus:text-white'>Company Name</label>
+								<input type='text' id='companyName' name='companyName' className='block border-b border-white mt-1 pl-2 py-4 text-white w-full focus:outline-none focus:ring-0 placeholder:text-white' placeholder='Company Name *' />
 							</div>
 
 							<div className='col-span-2 relative'>
-								<textarea id='message' name='message' rows={4} className='pt-4 peer mt-1 block border-b border-white text-white w-full z-10 relative pl-2 !focus:ring-0' placeholder=' '></textarea>
-								<label htmlFor='message' className='absolute left-2 -top-2.5 text-white transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-white peer-focus:-top-8 peer-focus:text-[14px] peer-focus:text-white'>Message</label>
+								<textarea id='message' name='message' rows={2} className='block border-b border-white mt-1 pl-2 py-4 text-white w-full focus:outline-none focus:ring-0 placeholder:text-white' placeholder='Message *'></textarea>
 							</div>
 						</div>
 
 						<div className="mt-[94px] text-center">
-							<button type='submit' className='bg-white mx-auto py-[14px] px-[60px] rounded-full w-fit'>
+							<button type='submit' className='bg-white cursor-pointer duration-300 mx-auto py-[14px] px-[60px] rounded-full w-fit hover:bg-white/80'>
 								Let's Connect
 							</button>
 						</div>

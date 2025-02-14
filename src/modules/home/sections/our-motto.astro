@@ -1,26 +1,43 @@
 ---
 import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
+
+const mottos = [
+	{
+		title: 'Brand Strategy',
+		desc: 'We closely collaborate with our clients to understand the needs and goals of the key to design',
+	},
+	{
+		title: 'Brand Identity',
+		desc: 'We closely collaborate with our clients to understand the needs and goals of the key to design',
+	},
+	{
+		title: 'Brand Support',
+		desc: 'We closely collaborate with our clients to understand the needs and goals of the key to design',
+	},
+];
 ---
 
 <section
 	id='card'
 	class='bg-secondary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
 	<div class='mx-auto px-[120px] py-[100px]'>
-		<h3 class='font-[700] font-display text-[53px] text-white'>
+		<h3
+			id='target'
+			class='font-[700] font-display text-[53px] text-white w-fit'>
 			<span>We solve your brand</span>
 			<span class='block'> problem in a different method </span>
 		</h3>
 
 		<div class='gap-8 grid grid-cols-3 mt-20'>
 			{
-				[1, 2, 3].map((item) => (
+				mottos.map((motto) => (
 					<InvertedRadCard
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
 						<div class='backdrop-blur-lg bg-white/10 rounded-4xl'>
-							<div class='flex flex-col gap-6 p-8 pb-[80px]'>
+							<div class='flex flex-col gap-6 p-8 pb-[120px]'>
 								<svg
 									width='48'
 									height='48'
@@ -70,16 +87,12 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 										fill='#ED1C24'
 									/>
 								</svg>
-								<p class='text-white'>Brand Strategy</p>
-								<p class='text-white/60'>
-									Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-									Exercitationem nam magnam suscipit eaque odit magni
-									accusantium, deleniti earum eligendi quidem!
-								</p>
+								<p class='font-[700] text-2xl text-white'>{motto.title}</p>
+								<p class='text-white/60'>{motto.desc}</p>
 							</div>
 						</div>
 						<div
-							class='bg-white flex h-10 items-center justify-center rounded-full w-10'
+							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
 							slot='cta-content'>
 							<Icon name='arrow-right' />
 						</div>

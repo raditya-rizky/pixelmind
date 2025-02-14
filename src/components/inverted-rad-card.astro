@@ -9,6 +9,9 @@ interface Props {
 	// adjust the height and width of the button component manually
 	offsetX?: number;
 	offsetY?: number;
+	// hover effect
+	tiltEffect?: boolean;
+	glare?: boolean;
 }
 
 const {
@@ -20,12 +23,117 @@ const {
 	ctaHeight = 'auto',
 	offsetX = 20,
 	offsetY = 10,
+	tiltEffect = false,
+	glare = false,
 } = Astro.props;
 ---
 
+<script>
+	import { gsap } from 'gsap';
+	const $cards = document.querySelectorAll(
+		'.card-inverted-radius'
+	) as NodeListOf<HTMLElement>;
+
+	$cards.forEach(($card) => {
+		let bounds: DOMRect;
+		let lastShadowOffsetX = 0;
+		let lastShadowOffsetY = 0;
+		let lastShadowBlur = 0;
+
+		function moveToMouse(e: MouseEvent) {
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
+			const leftX = mouseX - bounds.x;
+			const topY = mouseY - bounds.y;
+			const center = {
+				x: leftX - bounds.width / 2,
+				y: topY - bounds.height / 2,
+			};
+
+			const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+			const rotationX = -center.y / 50;
+			const rotationY = center.x / 50;
+
+			const shadowOffsetX = -rotationY * 5;
+			const shadowOffsetY = rotationX * 5;
+			const shadowBlur = 20 + distance / 120;
+			console.log(shadowBlur);
+
+			lastShadowOffsetX = shadowOffsetX;
+			lastShadowOffsetY = shadowOffsetY;
+			lastShadowBlur = shadowBlur;
+
+			$card.dataset.tilteffect === 'true' &&
+				gsap.to($card, {
+					scale: 1,
+					rotationX: rotationX,
+					rotationY: rotationY,
+					transformPerspective: 500,
+					ease: 'power2.out',
+				});
+
+			$card.dataset.glare === 'true' &&
+				gsap.to($card.querySelector('.glare'), {
+					autoAlpha: 0.3,
+					backgroundImage: `
+				radial-gradient(
+					circle at
+					${center.x * 2 + bounds.width / 2}px
+					${center.y * 2 + bounds.height / 2}px, rgba(255, 255, 255, 0.33), rgba(0, 0, 0, 0.06)
+				)
+				`,
+				});
+		}
+
+		$card.addEventListener('mouseenter', () => {
+			bounds = $card.getBoundingClientRect();
+			document.addEventListener('mousemove', moveToMouse);
+			$card.dataset.tilteffect === 'true' &&
+				gsap.to($card, {
+					scale: 1,
+					rotationX: 0,
+					rotationY: 0,
+					duration: 0.6,
+				});
+		});
+
+		$card.addEventListener('mouseleave', () => {
+			document.removeEventListener('mousemove', moveToMouse);
+
+			$card.dataset.tilteffect === 'true' &&
+				gsap.to($card, {
+					scale: 1,
+					rotationX: 0,
+					rotationY: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+				});
+
+			$card.dataset.tilteffect === 'true' &&
+				gsap.to($card, {
+					duration: 0.3,
+					ease: 'power3.out',
+					onComplete: () => {
+						gsap.to($card, {
+							boxShadow: `0px 0px ${lastShadowBlur}px 0 rgba(0, 0, 0, 0)`,
+							duration: 1.2,
+						});
+					},
+				});
+
+			$card.dataset.glare === 'true' &&
+				gsap.to($card.querySelector('.glare'), {
+					autoAlpha: 0,
+					duration: 0.6,
+				});
+		});
+	});
+</script>
+
 <div class='relative'>
 	<div
-		id='card-inverted-radius'
+		class='card-inverted-radius'
 		style={`
         --r: ${radius}px;
         --s: ${innerRadius}px;
@@ -33,11 +141,14 @@ const {
         --y: ${offsetY}px;
         width: ${width};
         height: ${height};
-    `}>
+    `}
+		data-glare={glare}
+		data-tilteffect={tiltEffect}>
+		<div class='glare absolute h-full left-0 top-0 w-full z-10'></div>
 		<slot />
 	</div>
 
-	<!-- Use slot='cta-content' attribute for a component that should be in the bottom-right -->
+	<!-- Use slot='cta-content' attribute for a component that should placed be in the bottom-right -->
 	<div
 		class='text-white font-bold bottom-0 right-0 flex justify-center items-center gap-2 md:absolute'
 		style={`
@@ -49,7 +160,7 @@ const {
 </div>
 
 <style>
-	#card-inverted-radius {
+	.card-inverted-radius {
 		border-radius: var(--r);
 		--_m: /calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000
 					72%);

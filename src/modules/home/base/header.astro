@@ -3,20 +3,10 @@ import { Image } from 'astro:assets';
 import pixelmindLogo from '@assets/pixelmind-logo.svg';
 ---
 
-<script>
-	import { gsap } from 'gsap';
-	gsap.from('.logo', {
-		scale: 2,
-		duration: 0.3,
-		ease: 'power3.in',
-		opacity: 0.5,
-	});
-</script>
-
 <header class='flex max-w-[1512px] py-[1em] w-full 2xl:py-[2em]'>
 	<a
 		href='/'
-		class='logo'>
+		id='logo'>
 		<Image
 			src={pixelmindLogo}
 			loading='eager'
