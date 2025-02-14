@@ -1,0 +1,47 @@
+---
+import OurMotto from '@modules/home/sections/our-motto.astro';
+import OurProducts from '@modules/home/sections/our-products.astro';
+import OurServices from '@modules/home/sections/our-services.astro';
+import Hero from '@modules/home/sections/hero.astro';
+import Layout from '@layouts/Layout.astro';
+import OurPortfolio from '@modules/home/sections/our-portfolio.astro';
+import Testimonials from '@modules/home/sections/testimonials.astro';
+import Form from '@modules/home/sections/form';
+---
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	gsap.registerPlugin(ScrollTrigger);
+
+	let panels = gsap.utils.toArray<HTMLElement>('#card');
+
+	// we'll create a ScrollTrigger for each panel just to track when each panel's top hits the top of the viewport (we only need this for snapping)
+	let tops = panels.map((panel) =>
+		ScrollTrigger.create({ trigger: panel, start: 'top top' })
+	);
+
+	panels.forEach((panel, i) => {
+		ScrollTrigger.create({
+			trigger: panel,
+			start: () =>
+				panel.offsetHeight < window.innerHeight ? 'top top' : 'bottom bottom', // if it's shorter than the viewport, we prefer to pin it at the top
+			pin: true,
+			pinSpacing: false,
+		});
+	});
+</script>
+
+<Layout>
+	<section id='home-page'>
+		<Hero />
+
+		<!-- Each one of these components has id of "card" -->
+		<OurProducts />
+		<OurServices />
+		<OurMotto />
+		<OurPortfolio />
+		<Testimonials />
+		<Form client:idle />
+	</section>
+</Layout>

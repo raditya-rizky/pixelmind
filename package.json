@@ -1,0 +1,25 @@
+{
+  "name": "pixelmind",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@smastrom/react-rating": "^1.5.0",
+    "@tailwindcss/vite": "^4.0.3",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "astro": "^5.2.5",
+    "astro-icon": "^1.1.5",
+    "gsap": "^3.12.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.2",
+    "tailwindcss": "^4.0.3"
+  }
+}

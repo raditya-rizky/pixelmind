@@ -1,0 +1,16 @@
+---
+import '@styles/global.css';
+import Header from '../base/header.astro';
+import HeroCard from '../base/hero-card.astro';
+---
+
+<section
+	id='home-page-hero'
+	class='bg-center bg-cover bg-no-repeat bg-[url(/hero-background.png)] h-[calc(100vh+40px)] min-h-full relative 2xl:min-h-[883px]'>
+	<div class='absolute backdrop-blur-sm bg-accent/80 h-full top-0 w-full'></div>
+	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
+	<div class='container mx-auto px-[20px]'>
+		<Header />
+		<HeroCard />
+	</div>
+</section>
