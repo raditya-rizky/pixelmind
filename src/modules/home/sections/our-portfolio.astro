@@ -9,10 +9,9 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 	import { gsap } from 'gsap';
 	gsap.set('#information', { yPercent: 100 });
 
-	gsap.utils.toArray('#portfolio').forEach((value) => {
+	gsap.utils.toArray('.card-inverted-radius').forEach((value) => {
 		let container = value as HTMLElement;
-		let info = container.querySelector('#information');
-		// let silhouette = container.querySelector('.silhouette .cover');
+		let info = container.querySelector('#portfolio #information');
 		let tl = gsap.timeline({ paused: true });
 
 		tl.to(info, { yPercent: 0 });
@@ -39,6 +38,8 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 			{
 				informations.map((item) => (
 					<InvertedRadCard
+						tiltEffect
+						glare
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
@@ -65,11 +66,19 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 
 		<div class='gap-8 grid grid-cols-2 mt-[60px]'>
 			<InvertedRadCard
+				tiltEffect
+				glare
 				ctaHeight='60px'
 				ctaWidth='80px'
 				innerRadius={36}>
 				<div
-					class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[344px]'>
+					id='portfolio'
+					class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px] relative'>
+					<div
+						id='information'
+						class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full'>
+						Brand
+					</div>
 				</div>
 				<div
 					class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
