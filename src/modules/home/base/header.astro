@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import pixelmindLogo from '@assets/pixelmind-logo.svg';
+---
+
+<header class='flex max-w-[1512px] py-[1em] w-full 2xl:py-[2em]'>
+	<a
+		href='/'
+		id='logo'>
+		<Image
+			src={pixelmindLogo}
+			loading='eager'
+			widths={[240, 540, 720, pixelmindLogo.width]}
+			sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${pixelmindLogo.width}px`}
+			alt='Pixelmind Homepage'
+			class='w-[140px]'
+		/>
+	</a>
+</header>

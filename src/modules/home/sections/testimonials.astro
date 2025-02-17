@@ -1,0 +1,105 @@
+---
+import { Icon } from 'astro-icon/components';
+import InvertedRadCard from '@components/inverted-rad-card.astro';
+import MainTestimonialCard from '@modules/home/base/main-testimonial-card';
+---
+
+<script>
+	import Swiper from 'swiper';
+	import 'swiper/css';
+
+	const swiper = new Swiper('.swiper', {
+		autoHeight: true,
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true,
+		},
+		rewind: true,
+		slidesPerView: 2,
+		speed: 600,
+		spaceBetween: '32px',
+	});
+
+	const buttonNext = document.querySelector('#next-slide') as HTMLElement;
+	const buttonPrev = document.querySelector('#prev-slide') as HTMLElement;
+	buttonNext.addEventListener('click', () => {
+		swiper.slideNext();
+	});
+	buttonPrev.addEventListener('click', () => {
+		swiper.slidePrev();
+	});
+</script>
+
+<section
+	id='card'
+	class='bg-secondary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
+	<div class='mx-auto px-[120px] py-[100px]'>
+		<h3
+			id='target'
+			class='font-[700] font-display text-[53px] text-white w-fit'>
+			<span>Let’s hear what other</span>
+			<span class='block'>say about us</span>
+		</h3>
+
+		<div class='gap-8 grid grid-cols-3 mt-20'>
+			<InvertedRadCard
+				ctaHeight='60px'
+				ctaWidth='110px'
+				innerRadius={36}
+				offsetX={60}>
+				<div class='h-full'>
+					<MainTestimonialCard
+						rating={4.5}
+						client:visible={{ rootMargin: '500px' }}
+					/>
+				</div>
+
+				<div
+					slot='cta-content'
+					class='flex gap-2'>
+					<div
+						id='prev-slide'
+						class='border cursor-pointer duration-300 flex h-10 items-center justify-center rotate-180 rounded-full text-white transform w-10 hover:bg-white hover:text-black'>
+						<Icon name='arrow-right-transparent' />
+					</div>
+					<div
+						id='next-slide'
+						class='border cursor-pointer duration-300 flex h-10 items-center justify-center text-white rounded-full w-10 hover:bg-white hover:text-black'>
+						<Icon name='arrow-right-transparent' />
+					</div>
+				</div>
+			</InvertedRadCard>
+			<div class='col-span-2'>
+				<div class='swiper !h-full'>
+					<div class='swiper-wrapper grid grid-cols-2 p-0 w-full'>
+						<!-- Slides -->
+						{
+							Array.from({ length: 5 }).map((_, index) => (
+								<div class='swiper-slide backdrop-blur-lg bg-white/10 !duration-300 font-display !h-full px-8 py-6 rounded-4xl !transition-all hover:bg-black/10 hover:!drop-shadow-lg'>
+									<div class='flex flex-col h-full justify-between'>
+										<Icon
+											name='quote'
+											class='w-20 h-20'
+										/>
+										<p class='mt-8 text-[18px] text-white/87'>
+											Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+											Beatae modi doloribus quos ad dolores similique.
+										</p>
+										<div class='mt-auto'>
+											<h5 class='font-bold leading-8 text-[20px] text-white'>
+												Client {index + 1}
+											</h5>
+											<p class='leading-[22px] text-sm text-white/60'>
+												Position, Company
+											</p>
+										</div>
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
