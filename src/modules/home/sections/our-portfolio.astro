@@ -40,6 +40,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 					<InvertedRadCard
 						tiltEffect
 						glare
+						glareIntensity={1}
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
@@ -48,7 +49,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 							class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px] relative'>
 							<div
 								id='information'
-								class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full'>
+								class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full z-20'>
 								{item.split(' ').map((word) => (
 									<span class='block'>{word}</span>
 								))}
@@ -68,6 +69,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 			<InvertedRadCard
 				tiltEffect
 				glare
+				glareIntensity={1}
 				ctaHeight='60px'
 				ctaWidth='80px'
 				innerRadius={36}>
@@ -76,7 +78,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 					class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px] relative'>
 					<div
 						id='information'
-						class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full'>
+						class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full z-20'>
 						Brand
 					</div>
 				</div>
@@ -91,7 +93,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 				offsetX={80}
 				ctaHeight='60px'>
 				<div
-					class='backdrop-blur-lg bg-white/10 flex h-full items-center px-[60px]'>
+					class='backdrop-blur-lg bg-white/10 flex h-full items-center px-[60px] relative z-20'>
 					<h4
 						class='font-[700] font-display leading-[64px] text-[40px] text-white'>
 						<span>View All Our</span>

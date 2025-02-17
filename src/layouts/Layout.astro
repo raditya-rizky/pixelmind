@@ -91,12 +91,10 @@ import '@styles/global.css';
 
 	targets.forEach((target) => {
 		(target as HTMLElement).addEventListener('mouseenter', (e) => {
-			console.log('play');
 			scaleAnim.play();
 		});
 
 		(target as HTMLElement).addEventListener('mouseleave', (e) => {
-			console.log('reverse');
 			scaleAnim.reverse();
 		});
 	});
@@ -148,5 +146,6 @@ import '@styles/global.css';
 		box-sizing: border-box;
 		-webkit-transform: translate(-50%, -50%) rotate(0deg);
 		transform: translate(-50%, -50%) rotate(0deg);
+		z-index: 99999;
 	}
 </style>
