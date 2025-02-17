@@ -5,9 +5,11 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 
 <section
 	id='card'
-	class='bg-secondary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
+	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
 	<div class='mx-auto px-[120px] py-[100px]'>
-		<h3 class='font-[700] font-display text-[53px] text-white'>
+		<h3
+			id='target'
+			class='font-[700] font-display text-[53px] text-white w-fit'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Products
@@ -18,6 +20,8 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 			{
 				[1, 2].map((item) => (
 					<InvertedRadCard
+						tiltEffect
+						glare
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
@@ -30,7 +34,7 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 							</div>
 						</div>
 						<div
-							class='bg-white flex h-10 items-center justify-center rounded-full w-10'
+							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
 							slot='cta-content'>
 							<Icon name='arrow-right' />
 						</div>

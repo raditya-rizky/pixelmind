@@ -4,9 +4,47 @@ import Header from '../base/header.astro';
 import HeroCard from '../base/hero-card.astro';
 ---
 
+<script>
+	import { gsap } from 'gsap';
+	import { TextPlugin } from 'gsap/TextPlugin';
+	gsap.registerPlugin(TextPlugin);
+	const tl = gsap.timeline();
+	tl.from('#logo', {
+		scale: 2,
+		duration: 0.5,
+		ease: 'power3.in',
+		opacity: 0.5,
+	});
+	tl.from('#hero-card', {
+		delay: 0.3,
+		opacity: 0,
+	});
+	tl.from('#we-offer-you', {
+		x: 40,
+		opacity: 0,
+		ease: 'power2.in',
+		duration: 0.2,
+	});
+	tl.to('#digital-platform', {
+		text: 'Digital Platform',
+		duration: 1,
+		delay: 0.3,
+	});
+	tl.fromTo(
+		'#hero-cta-link',
+		{ textShadow: '0px 0px 0px rgba(255,255,255,0)' },
+		{
+			textShadow: '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff',
+			duration: 0.4,
+			yoyo: true,
+			repeat: 1,
+		}
+	);
+</script>
+
 <section
-	id='home-page-hero'
-	class='bg-center bg-cover bg-no-repeat bg-[url(/hero-background.png)] h-[calc(100vh+40px)] min-h-full relative 2xl:min-h-[883px]'>
+	id='card'
+	class='bg-center bg-cover bg-no-repeat bg-[url(/hero-background.png)] h-[100vh] min-h-full relative 2xl:min-h-[883px]'>
 	<div class='absolute backdrop-blur-sm bg-accent/80 h-full top-0 w-full'></div>
 	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
 	<div class='container mx-auto px-[20px]'>

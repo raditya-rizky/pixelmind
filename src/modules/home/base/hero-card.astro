@@ -1,25 +1,32 @@
----
-import '@styles/global.css';
----
-
-<div class='mx-auto pt-10 relative w-fit lg:mx-0'>
+<div
+	id='hero-card'
+	class='mx-auto pt-10 relative w-fit lg:mx-0'>
 	<div
 		id='inverted-radius'
 		class='backdrop-blur-sm bg-accent/20 h-fit mx-auto p-[28px] w-full md:p-[40px] xl:p-[80px]'>
 		<div>
-			<h1
-				class='font-bold font-display text-white md:leading-[80px] md:pb-[60px] xl:leading-[110px]'>
-				<span class='text-[16px] md:text-3xl lg:text-5xl 2xl:text-[70px]'>
+			<h1 class='font-bold font-display text-white md:pb-[60px]'>
+				<span
+					id='we-offer-you'
+					class='block text-[16px] md:leading-[80px] md:text-3xl lg:text-5xl xl:leading-[110px] 2xl:text-[70px]'>
 					We Offer You A
 				</span>
-				<span class='block text-[24px] md:text-5xl lg:text-7xl 2xl:text-[90px]'>
-					Digital Platform
-				</span>
+				<div class='relative'>
+					<span
+						id='digital-platform'
+						class='absolute block text-[24px] md:leading-[80px] md:text-5xl lg:text-7xl xl:leading-[110px] 2xl:text-[90px]'>
+					</span>
+					<span
+						class='block invisible text-[24px] md:text-5xl lg:text-7xl 2xl:text-[90px]'>
+						Digital Platform
+					</span>
+				</div>
 			</h1>
 		</div>
 	</div>
 
 	<a
+		id='hero-cta-link'
 		href='/'
 		class='bottom-0 flex font-bold gap-2 h-10 items-center justify-center right-0 text-white md:absolute md:h-14 md:w-[120px] lg:h-20 lg:w-[360px]'>
 		<svg

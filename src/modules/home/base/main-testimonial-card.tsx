@@ -1,7 +1,7 @@
 import '@smastrom/react-rating/style.css'
 import { Rating, RoundedStar } from '@smastrom/react-rating'
 
-export default function MainTestimonialCard() {
+export default function MainTestimonialCard({ rating }: { rating: number }) {
   return (
     <div
       className='backdrop-blur-lg bg-white/10 flex font-display items-center justify-center px-8 py-[60px] rounded-4xl'>
@@ -12,7 +12,7 @@ export default function MainTestimonialCard() {
             style={{ maxWidth: 192 }}
             readOnly
             orientation="horizontal"
-            value={4.5}
+            value={rating}
             itemStyles={{
               itemShapes: RoundedStar,
               activeFillColor: '#f59e0b',
