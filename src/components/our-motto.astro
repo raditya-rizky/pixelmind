@@ -16,11 +16,17 @@ const mottos = [
 		desc: 'We closely collaborate with our clients to understand the needs and goals of the key to design',
 	},
 ];
+
+interface Props {
+	bgColor?: string;
+}
+
+const { bgColor = 'bg-secondary' } = Astro.props;
 ---
 
 <section
 	id='card'
-	class='bg-secondary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
+	class={`${bgColor} min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]`}>
 	<div class='mx-auto px-[120px] py-[100px]'>
 		<h3
 			id='target'
@@ -36,7 +42,7 @@ const mottos = [
 						ctaHeight='60px'
 						ctaWidth='80px'
 						innerRadius={36}>
-						<div class='backdrop-blur-lg bg-white/10 rounded-4xl'>
+						<div class='backdrop-blur-lg bg-white/10 relative rounded-4xl z-20'>
 							<div class='flex flex-col gap-6 p-8 pb-[120px]'>
 								<svg
 									width='48'
