@@ -12,6 +12,7 @@ interface Props {
 	// hover effect
 	tiltEffect?: boolean;
 	glare?: boolean;
+	glareIntensity?: number;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
 	offsetY = 10,
 	tiltEffect = false,
 	glare = false,
+	glareIntensity = 0.5,
 } = Astro.props;
 ---
 
@@ -75,7 +77,7 @@ const {
 
 			$card.dataset.glare === 'true' &&
 				gsap.to($card.querySelector('.glare'), {
-					autoAlpha: 0.3,
+					autoAlpha: $card.dataset.glareintensity,
 					backgroundImage: `
 				radial-gradient(
 					circle at
@@ -143,6 +145,7 @@ const {
         height: ${height};
     `}
 		data-glare={glare}
+		data-glareintensity={glareIntensity}
 		data-tilteffect={tiltEffect}>
 		<div class='glare absolute h-full left-0 top-0 w-full z-10'></div>
 		<slot />
