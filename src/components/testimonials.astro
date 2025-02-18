@@ -6,18 +6,21 @@ import MainTestimonialCard from '@modules/home/base/main-testimonial-card';
 
 <script>
 	import Swiper from 'swiper';
+	import { Autoplay } from 'swiper/modules';
 	import 'swiper/css';
+	import 'swiper/css/autoplay';
 
 	const swiper = new Swiper('.swiper', {
 		autoHeight: true,
-		effect: 'fade',
-		fadeEffect: {
-			crossFade: true,
+		autoplay: {
+			delay: 1000,
+			disableOnInteraction: false,
 		},
 		rewind: true,
 		slidesPerView: 2,
 		speed: 600,
 		spaceBetween: '32px',
+		modules: [Autoplay],
 	});
 
 	const buttonNext = document.querySelector('#next-slide') as HTMLElement;
@@ -47,7 +50,7 @@ import MainTestimonialCard from '@modules/home/base/main-testimonial-card';
 				ctaWidth='110px'
 				innerRadius={36}
 				offsetX={60}>
-				<div class='h-full'>
+				<div class='h-full relative z-20'>
 					<MainTestimonialCard
 						rating={4.5}
 						client:visible={{ rootMargin: '500px' }}
