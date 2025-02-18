@@ -37,38 +37,24 @@ import Testimonials from '@components/testimonials.astro';
 				start: 'top 550px',
 				end: 'bottom top',
 			},
-			duration: 0.8,
+			duration: 0.6,
 			opacity: 0,
 			ease: 'power2.in',
 			stagger: 0.05,
-			x: 40,
-			yoyo: true,
-		})
-	);
-
-	let serviceCards = gsap.utils.toArray<HTMLElement>('#services');
-	serviceCards.forEach((card) =>
-		gsap.from(card, {
-			scrollTrigger: {
-				trigger: card,
-				start: 'top 550px',
-				end: 'bottom top',
-			},
-			duration: 0.8,
-			opacity: 0,
-			ease: 'power2.in',
-			yoyo: true,
+			x: 120,
 		})
 	);
 </script>
 
 <Layout>
-	<!-- Each one of these components has id of "card" -->
-	<Hero />
-	<OurProducts />
-	<OurServices />
-	<OurMotto />
-	<OurPortfolio />
-	<Testimonials />
-	<Form />
+	<section class='overflow-x-hidden'>
+		<!-- Each one of these components has id of "card" -->
+		<Hero />
+		<OurProducts />
+		<OurServices />
+		<OurMotto />
+		<OurPortfolio />
+		<Testimonials />
+		<Form />
+	</section>
 </Layout>
