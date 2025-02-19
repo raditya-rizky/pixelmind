@@ -34,6 +34,16 @@ const services = [
 ];
 ---
 
+<script>
+	import { gsap } from 'gsap';
+	import { cardEnterAnimation } from '@utils/index';
+
+	let serviceCards = gsap.utils.toArray<HTMLElement>('#services');
+	serviceCards.forEach((card, index) => {
+		cardEnterAnimation({ element: card, index: index });
+	});
+</script>
+
 <section
 	id='card'
 	class='bg-primary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
