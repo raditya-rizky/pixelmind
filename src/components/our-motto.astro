@@ -36,25 +36,33 @@ const { bgColor = 'bg-secondary' } = Astro.props;
 
 <section
 	id='card'
-	class={`${bgColor} min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]`}>
-	<div class='mx-auto px-[120px] py-[100px]'>
+	class={`${bgColor} min-h-auto -mt-24 pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]`}>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[53px] text-white w-fit'>
+			class='font-[700] font-display text-[32px] text-white w-fit md:text-[48px] lg:text-[53px]'>
 			<span>We solve your brand</span>
 			<span class='block'> problem in a different method </span>
 		</h3>
 
-		<div class='gap-8 grid grid-cols-3 mt-20'>
+		<div
+			class='gap-4 grid grid-cols-1 mt-20 md:gap-8 lg:grid-cols-2 xl:grid-cols-3'>
 			{
 				mottos.map((motto) => (
 					<div id='mottos'>
 						<InvertedRadCard
-							ctaHeight='60px'
-							ctaWidth='80px'
-							innerRadius={36}>
+							ctaHeight='40px'
+							ctaWidth='60px'
+							mdCtaHeight='60px'
+							mdCtaWidth='80px'
+							innerRadius={24}
+							mdInnerRadius={36}
+							offsetX={10}
+							offsetY={0}
+							mdOffsetX={20}
+							mdOffsetY={10}>
 							<div class='backdrop-blur-lg bg-white/10 relative rounded-4xl z-20'>
-								<div class='flex flex-col gap-6 p-8 pb-[120px]'>
+								<div class='flex flex-col gap-6 p-8 md:pb-[120px]'>
 									<svg
 										width='48'
 										height='48'
@@ -104,14 +112,19 @@ const { bgColor = 'bg-secondary' } = Astro.props;
 											fill='#ED1C24'
 										/>
 									</svg>
-									<p class='font-[700] text-2xl text-white'>{motto.title}</p>
-									<p class='text-white/60'>{motto.desc}</p>
+									<p class='font-[700] text-xl text-white md:text-2xl'>
+										{motto.title}
+									</p>
+									<p class='text-white/60 text-sm md:text-base'>{motto.desc}</p>
 								</div>
 							</div>
 							<div
-								class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
+								class='bg-white cursor-pointer duration-300 flex h-8 items-center justify-center rounded-full text-black w-8 md:h-10 md:w-10 hover:bg-accent hover:text-white'
 								slot='cta-content'>
-								<Icon name='arrow-right' />
+								<Icon
+									name='arrow-right'
+									class='w-3 md:w-4'
+								/>
 							</div>
 						</InvertedRadCard>
 					</div>

@@ -46,8 +46,10 @@ import HeroCard from '../base/hero-card.astro';
 	class='bg-center bg-cover bg-no-repeat bg-[url(/hero-background.png)] h-[100vh] min-h-full relative 2xl:min-h-[883px]'>
 	<div class='absolute backdrop-blur-sm bg-accent/80 h-full top-0 w-full'></div>
 	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
-	<div class='container mx-auto px-[20px]'>
+	<div class='container h-full mx-auto px-4 md:px-[20px]'>
 		<Header />
-		<HeroCard />
+		<div class='flex items-center h-full -mt-20'>
+			<HeroCard />
+		</div>
 	</div>
 </section>

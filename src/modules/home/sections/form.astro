@@ -1,11 +1,11 @@
 <section
 	id='card'
-	class='bg-accent min-h-auto -mt-24 overflow-hidden pb-[100px] relative !rounded-se-[100px] !rounded-ss-[100px]'>
+	class='bg-accent min-h-auto -mt-24 overflow-hidden pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]'>
 	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
-	<div class='mx-auto max-w-[1054px] py-[100px] relative w-full'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[53px] text-white w-fit'>
+			class='font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
 			<span>Let's work</span>
 			<span class='block'>together</span>
 		</h3>
@@ -14,8 +14,8 @@
 			<form
 				action='/'
 				class='font-display'>
-				<div class='gap-x-6 gap-y-20 grid grid-cols-2'>
-					<div class='col-span-1 relative'>
+				<div class='gap-x-6 gap-y-20 grid grid-cols-1 lg:grid-cols-2'>
+					<div class='md:col-span-1 relative'>
 						<input
 							type='text'
 							id='firstName'
@@ -24,7 +24,7 @@
 							placeholder='First Name *'
 						/>
 					</div>
-					<div class='col-span-1 relative'>
+					<div class='lg:col-span-1 relative'>
 						<input
 							type='text'
 							id='lastName'
@@ -33,7 +33,7 @@
 							placeholder='Last Name *'
 						/>
 					</div>
-					<div class='col-span-1 relative'>
+					<div class='lg:col-span-1 relative'>
 						<input
 							type='text'
 							id='email'
@@ -42,7 +42,7 @@
 							placeholder='Email Address *'
 						/>
 					</div>
-					<div class='col-span-1 relative'>
+					<div class='lg:col-span-1 relative'>
 						<input
 							type='text'
 							id='companyName'
@@ -52,7 +52,7 @@
 						/>
 					</div>
 
-					<div class='col-span-2 relative'>
+					<div class='lg:col-span-2 relative'>
 						<textarea
 							id='message'
 							name='message'
@@ -66,7 +66,7 @@
 				<div class='mt-[94px] text-center'>
 					<button
 						type='submit'
-						class='bg-white cursor-pointer duration-300 mx-auto py-[14px] px-[60px] rounded-full w-fit hover:bg-white/80'>
+						class='bg-white cursor-pointer duration-300 mx-auto py-[14px] px-[60px] relative rounded-full w-fit z-10 hover:bg-white/80'>
 						Let's Connect
 					</button>
 				</div>
