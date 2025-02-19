@@ -3,6 +3,16 @@ import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
 ---
 
+<script>
+	import { gsap } from 'gsap';
+	import { cardEnterAnimation } from '@utils/index';
+
+	let productCards = gsap.utils.toArray<HTMLElement>('#products');
+	productCards.forEach((card, index) => {
+		cardEnterAnimation({ element: card, index: index });
+	});
+</script>
+
 <section
 	id='card'
 	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
@@ -19,26 +29,28 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 		<div class='gap-8 grid grid-cols-2 mt-20'>
 			{
 				[1, 2].map((item) => (
-					<InvertedRadCard
-						tiltEffect
-						glare
-						ctaHeight='60px'
-						ctaWidth='80px'
-						innerRadius={36}>
-						<div class='bg-[url(/our-products.png)] bg-cover bg-center min-h-[461px]'>
-							<div class='flex justify-center p-8'>
-								<img
-									src='/sehago-logo.png'
-									alt='Logo'
-								/>
+					<div id='products'>
+						<InvertedRadCard
+							tiltEffect
+							glare
+							ctaHeight='60px'
+							ctaWidth='80px'
+							innerRadius={36}>
+							<div class='bg-[url(/our-products.png)] bg-cover bg-center min-h-[461px]'>
+								<div class='flex justify-center p-8'>
+									<img
+										src='/sehago-logo.png'
+										alt='Logo'
+									/>
+								</div>
 							</div>
-						</div>
-						<div
-							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
-							slot='cta-content'>
-							<Icon name='arrow-right' />
-						</div>
-					</InvertedRadCard>
+							<div
+								class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
+								slot='cta-content'>
+								<Icon name='arrow-right' />
+							</div>
+						</InvertedRadCard>
+					</div>
 				))
 			}
 		</div>
