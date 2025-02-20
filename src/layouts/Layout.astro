@@ -100,7 +100,7 @@ import '@styles/global.css';
 	});
 </script>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
@@ -109,43 +109,54 @@ import '@styles/global.css';
 		position: relative;
 	}
 
-	.cursor-outline,
-	.cursor-dot {
-		opacity: 0;
+	@media screen and (min-width: 1280px) {
+		#card {
+			min-height: 100vh;
+		}
 	}
 
-	.cursor-outline {
-		border-radius: 50px;
-		position: fixed;
-		width: 80px;
-		height: 80px;
-		border: solid 1px #fff;
-		mix-blend-mode: difference;
-		pointer-events: none;
-	}
+	@media screen and (min-width: 1024px) {
+		#card {
+			min-height: 100vh;
+		}
+		.cursor-outline,
+		.cursor-dot {
+			opacity: 0;
+		}
 
-	/* Visible when running fancy.js */
-	.cursor-dot {
-		mix-blend-mode: difference;
-		border-radius: 50px;
-		position: fixed;
-		width: 80px;
-		height: 80px;
-		background-color: white;
-		border: solid 1px #fff;
-		pointer-events: none;
-	}
+		.cursor-outline {
+			border-radius: 50px;
+			position: fixed;
+			width: 80px;
+			height: 80px;
+			border: solid 1px #fff;
+			mix-blend-mode: difference;
+			pointer-events: none;
+		}
 
-	.target,
-	.cursor-outline,
-	.cursor-dot {
-		/* needed for target (shared) */
-		top: 50%;
-		left: 10%;
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-		-webkit-transform: translate(-50%, -50%) rotate(0deg);
-		transform: translate(-50%, -50%) rotate(0deg);
-		z-index: 99999;
+		/* Visible when running fancy.js */
+		.cursor-dot {
+			mix-blend-mode: difference;
+			border-radius: 50px;
+			position: fixed;
+			width: 80px;
+			height: 80px;
+			background-color: white;
+			border: solid 1px #fff;
+			pointer-events: none;
+		}
+
+		.target,
+		.cursor-outline,
+		.cursor-dot {
+			/* needed for target (shared) */
+			top: 50%;
+			left: 10%;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transform: translate(-50%, -50%) rotate(0deg);
+			transform: translate(-50%, -50%) rotate(0deg);
+			z-index: 99999;
+		}
 	}
 </style>
