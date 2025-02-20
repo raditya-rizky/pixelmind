@@ -6,12 +6,29 @@ interface Props {
 	height?: string;
 	ctaWidth?: string;
 	ctaHeight?: string;
-	// adjust the height and width of the button component manually
 	offsetX?: number;
 	offsetY?: number;
-	// hover effect
 	tiltEffect?: boolean;
 	glare?: boolean;
+	glareIntensity?: number;
+	// Responsive props for main card
+	mdRadius?: number;
+	mdInnerRadius?: number;
+	mdOffsetX?: number;
+	mdOffsetY?: number;
+	mdWidth?: string;
+	mdHeight?: string;
+	lgRadius?: number;
+	lgInnerRadius?: number;
+	lgOffsetX?: number;
+	lgOffsetY?: number;
+	lgWidth?: string;
+	lgHeight?: string;
+	// Responsive props for CTA
+	mdCtaWidth?: string;
+	mdCtaHeight?: string;
+	lgCtaWidth?: string;
+	lgCtaHeight?: string;
 }
 
 const {
@@ -25,124 +42,49 @@ const {
 	offsetY = 10,
 	tiltEffect = false,
 	glare = false,
+	glareIntensity = 0.5,
+	// Main card responsive defaults
+	mdRadius = radius,
+	mdInnerRadius = innerRadius,
+	mdOffsetX = offsetX,
+	mdOffsetY = offsetY,
+	mdWidth = width,
+	mdHeight = height,
+	lgRadius = mdRadius,
+	lgInnerRadius = mdInnerRadius,
+	lgOffsetX = mdOffsetX,
+	lgOffsetY = mdOffsetY,
+	lgWidth = mdWidth,
+	lgHeight = mdHeight,
+	// CTA responsive defaults
+	mdCtaWidth = ctaWidth,
+	mdCtaHeight = ctaHeight,
+	lgCtaWidth = mdCtaWidth,
+	lgCtaHeight = mdCtaHeight,
 } = Astro.props;
 ---
-
-<script>
-	import { gsap } from 'gsap';
-	const $cards = document.querySelectorAll(
-		'.card-inverted-radius'
-	) as NodeListOf<HTMLElement>;
-
-	$cards.forEach(($card) => {
-		let bounds: DOMRect;
-		let lastShadowOffsetX = 0;
-		let lastShadowOffsetY = 0;
-		let lastShadowBlur = 0;
-
-		function moveToMouse(e: MouseEvent) {
-			const mouseX = e.clientX;
-			const mouseY = e.clientY;
-			const leftX = mouseX - bounds.x;
-			const topY = mouseY - bounds.y;
-			const center = {
-				x: leftX - bounds.width / 2,
-				y: topY - bounds.height / 2,
-			};
-
-			const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
-
-			const rotationX = -center.y / 50;
-			const rotationY = center.x / 50;
-
-			const shadowOffsetX = -rotationY * 5;
-			const shadowOffsetY = rotationX * 5;
-			const shadowBlur = 20 + distance / 120;
-			console.log(shadowBlur);
-
-			lastShadowOffsetX = shadowOffsetX;
-			lastShadowOffsetY = shadowOffsetY;
-			lastShadowBlur = shadowBlur;
-
-			$card.dataset.tilteffect === 'true' &&
-				gsap.to($card, {
-					scale: 1,
-					rotationX: rotationX,
-					rotationY: rotationY,
-					transformPerspective: 500,
-					ease: 'power2.out',
-				});
-
-			$card.dataset.glare === 'true' &&
-				gsap.to($card.querySelector('.glare'), {
-					autoAlpha: 0.3,
-					backgroundImage: `
-				radial-gradient(
-					circle at
-					${center.x * 2 + bounds.width / 2}px
-					${center.y * 2 + bounds.height / 2}px, rgba(255, 255, 255, 0.33), rgba(0, 0, 0, 0.06)
-				)
-				`,
-				});
-		}
-
-		$card.addEventListener('mouseenter', () => {
-			bounds = $card.getBoundingClientRect();
-			document.addEventListener('mousemove', moveToMouse);
-			$card.dataset.tilteffect === 'true' &&
-				gsap.to($card, {
-					scale: 1,
-					rotationX: 0,
-					rotationY: 0,
-					duration: 0.6,
-				});
-		});
-
-		$card.addEventListener('mouseleave', () => {
-			document.removeEventListener('mousemove', moveToMouse);
-
-			$card.dataset.tilteffect === 'true' &&
-				gsap.to($card, {
-					scale: 1,
-					rotationX: 0,
-					rotationY: 0,
-					duration: 0.6,
-					ease: 'power2.out',
-				});
-
-			$card.dataset.tilteffect === 'true' &&
-				gsap.to($card, {
-					duration: 0.3,
-					ease: 'power3.out',
-					onComplete: () => {
-						gsap.to($card, {
-							boxShadow: `0px 0px ${lastShadowBlur}px 0 rgba(0, 0, 0, 0)`,
-							duration: 1.2,
-						});
-					},
-				});
-
-			$card.dataset.glare === 'true' &&
-				gsap.to($card.querySelector('.glare'), {
-					autoAlpha: 0,
-					duration: 0.6,
-				});
-		});
-	});
-</script>
 
 <div class='relative'>
 	<div
 		class='card-inverted-radius'
 		style={`
-        --r: ${radius}px;
-        --s: ${innerRadius}px;
-        --x: ${offsetX}px;
-        --y: ${offsetY}px;
-        width: ${width};
-        height: ${height};
+      --r: ${radius}px;
+      --s: ${innerRadius}px;
+      --x: ${offsetX}px;
+      --y: ${offsetY}px;
+      --md-r: ${mdRadius}px;
+      --md-s: ${mdInnerRadius}px;
+      --md-x: ${mdOffsetX}px;
+      --md-y: ${mdOffsetY}px;
+      --lg-r: ${lgRadius}px;
+      --lg-s: ${lgInnerRadius}px;
+      --lg-x: ${lgOffsetX}px;
+      --lg-y: ${lgOffsetY}px;
+      width: ${width};
+      height: ${height};
     `}
 		data-glare={glare}
+		data-glareintensity={glareIntensity}
 		data-tilteffect={tiltEffect}>
 		<div class='glare absolute h-full left-0 top-0 w-full z-10'></div>
 		<slot />
@@ -150,11 +92,15 @@ const {
 
 	<!-- Use slot='cta-content' attribute for a component that should placed be in the bottom-right -->
 	<div
-		class='text-white font-bold bottom-0 right-0 flex justify-center items-center gap-2 md:absolute'
+		class='cta-container absolute text-white font-bold bottom-0 right-0 flex justify-center items-center gap-2'
 		style={`
-				width: ${ctaWidth};
-        height: ${ctaHeight};
-			`}>
+      --cta-w: ${ctaWidth};
+      --cta-h: ${ctaHeight};
+      --md-cta-w: ${mdCtaWidth};
+      --md-cta-h: ${mdCtaHeight};
+      --lg-cta-w: ${lgCtaWidth};
+      --lg-cta-h: ${lgCtaHeight};
+    `}>
 		<slot name='cta-content' />
 	</div>
 </div>
@@ -178,5 +124,74 @@ const {
 			var(--_g) calc(-1 * var(--_d) - var(--x)) 0,
 			var(--_g) 0 calc(-1 * var(--_d) - var(--y));
 		mask-repeat: no-repeat;
+
+		@media screen and (min-width: 768px) {
+			border-radius: var(--md-r);
+			--_m: /calc(2 * var(--md-r)) calc(2 * var(--md-r)) radial-gradient(#000
+						70%, #0000 72%);
+			--_g: conic-gradient(
+				from 90deg at calc(100% - var(--md-r)) calc(100% - var(--md-r)),
+				#0000 25%,
+				#000 0
+			);
+			--_d: (var(--md-s) + var(--md-r));
+			mask:
+				calc(100% - var(--_d) - var(--md-x)) 100% var(--_m),
+				100% calc(100% - var(--_d) - var(--md-y)) var(--_m),
+				radial-gradient(
+						var(--md-s) at 100% 100%,
+						#0000 99%,
+						#000 calc(100% + 1px)
+					)
+					calc(-1 * var(--md-r) - var(--md-x))
+					calc(-1 * var(--md-r) - var(--md-y)),
+				var(--_g) calc(-1 * var(--_d) - var(--md-x)) 0,
+				var(--_g) 0 calc(-1 * var(--_d) - var(--md-y));
+			mask-repeat: no-repeat;
+			width: var(--md-width);
+			height: var(--md-height);
+		}
+
+		@media screen and (min-width: 1024px) {
+			border-radius: var(--lg-r);
+			--_m: /calc(2 * var(--lg-r)) calc(2 * var(--lg-r)) radial-gradient(#000
+						70%, #0000 72%);
+			--_g: conic-gradient(
+				from 90deg at calc(100% - var(--lg-r)) calc(100% - var(--lg-r)),
+				#0000 25%,
+				#000 0
+			);
+			--_d: (var(--lg-s) + var(--lg-r));
+			mask:
+				calc(100% - var(--_d) - var(--lg-x)) 100% var(--_m),
+				100% calc(100% - var(--_d) - var(--lg-y)) var(--_m),
+				radial-gradient(
+						var(--lg-s) at 100% 100%,
+						#0000 99%,
+						#000 calc(100% + 1px)
+					)
+					calc(-1 * var(--lg-r) - var(--lg-x))
+					calc(-1 * var(--lg-r) - var(--lg-y)),
+				var(--_g) calc(-1 * var(--_d) - var(--lg-x)) 0,
+				var(--_g) 0 calc(-1 * var(--_d) - var(--lg-y));
+			mask-repeat: no-repeat;
+			width: var(--lg-width);
+			height: var(--lg-height);
+		}
+	}
+
+	.cta-container {
+		width: var(--cta-w);
+		height: var(--cta-h);
+
+		@media screen and (min-width: 768px) {
+			width: var(--md-cta-w);
+			height: var(--md-cta-h);
+		}
+
+		@media screen and (min-width: 1024px) {
+			width: var(--lg-cta-w);
+			height: var(--lg-cta-h);
+		}
 	}
 </style>

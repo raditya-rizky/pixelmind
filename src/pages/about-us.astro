@@ -1,12 +1,9 @@
 ---
-import OurProducts from '@modules/home/sections/our-products.astro';
-import OurServices from '@modules/home/sections/our-services.astro';
-import Hero from '@modules/home/sections/hero.astro';
-import Layout from '@layouts/Layout.astro';
-import OurPortfolio from '@modules/home/sections/our-portfolio.astro';
-import Form from '@modules/home/sections/form.astro';
 import OurMotto from '@components/our-motto.astro';
 import Testimonials from '@components/testimonials.astro';
+import Layout from '@layouts/Layout.astro';
+import Hero from '@modules/about-us/sections/hero.astro';
+import OurExpertise from '@modules/about-us/sections/our-expertise.astro';
 ---
 
 <script>
@@ -15,10 +12,12 @@ import Testimonials from '@components/testimonials.astro';
 	gsap.registerPlugin(ScrollTrigger);
 
 	let panels = gsap.utils.toArray<HTMLElement>('#card');
+
 	// we'll create a ScrollTrigger for each panel just to track when each panel's top hits the top of the viewport (we only need this for snapping)
 	let tops = panels.map((panel) =>
 		ScrollTrigger.create({ trigger: panel, start: 'top top' })
 	);
+
 	panels.forEach((panel, i) => {
 		ScrollTrigger.create({
 			trigger: panel,
@@ -30,6 +29,7 @@ import Testimonials from '@components/testimonials.astro';
 	});
 
 	const targetText = document.querySelectorAll('#target');
+
 	targetText.forEach((text) =>
 		gsap.from(text, {
 			scrollTrigger: {
@@ -37,24 +37,22 @@ import Testimonials from '@components/testimonials.astro';
 				start: 'top 550px',
 				end: 'bottom top',
 			},
-			duration: 0.6,
+			duration: 0.8,
 			opacity: 0,
 			ease: 'power2.in',
 			stagger: 0.05,
-			x: 120,
+			x: 40,
+			yoyo: true,
 		})
 	);
 </script>
 
 <Layout>
-	<section class='bg-accent/10 overflow-x-hidden'>
+	<section class='bg-primary'>
 		<!-- Each one of these components has id of "card" -->
 		<Hero />
-		<OurProducts />
-		<OurServices />
-		<OurMotto />
-		<OurPortfolio />
+		<OurExpertise />
+		<OurMotto bgColor='bg-primary' />
 		<Testimonials />
-		<Form />
 	</section>
 </Layout>

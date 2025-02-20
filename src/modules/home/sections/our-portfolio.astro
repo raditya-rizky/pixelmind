@@ -6,6 +6,7 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 ---
 
 <script>
+	import { cardEnterAnimation } from '@utils/index';
 	import { gsap } from 'gsap';
 	gsap.set('#information', { yPercent: 100 });
 
@@ -19,95 +20,140 @@ const informations = ['Brand Strategy', 'Brand Identity', 'Brand Support'];
 		container.addEventListener('mouseenter', () => tl.timeScale(1).play());
 		container.addEventListener('mouseleave', () => tl.timeScale(3).reverse());
 	});
+
+	let portfolioCards = gsap.utils.toArray<HTMLElement>('#portfolios');
+	portfolioCards.forEach((card, index) => {
+		cardEnterAnimation({ element: card, index: index });
+	});
+
+	let portfolioBotomCards = gsap.utils.toArray<HTMLElement>('#portfolios2');
+	portfolioBotomCards.forEach((card, index) => {
+		cardEnterAnimation({ element: card, index: index });
+	});
 </script>
 
 <section
 	id='card'
-	class='bg-primary min-h-auto -mt-24 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
-	<div class='mx-auto px-[120px] py-[100px]'>
+	class='bg-primary min-h-auto -mt-24 pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[53px] text-white w-fit'>
+			class='font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Portfolio
 			</span>
 		</h3>
 
-		<div class='gap-8 grid grid-cols-3 mt-20'>
+		<div
+			class='gap-y-4 grid grid-cols-1 mt-20 lg:gap-x-8 lg:gap-y-12 lg:grid-cols-12'>
 			{
-				informations.map((item) => (
-					<InvertedRadCard
-						tiltEffect
-						glare
-						ctaHeight='60px'
-						ctaWidth='80px'
-						innerRadius={36}>
-						<div
-							id='portfolio'
-							class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px] relative'>
+				informations.map((item, idx) => (
+					<div
+						id='portfolios'
+						class={`col-span-4 ${informations.length === idx + 1 ? 'hidden lg:block' : ''}`}>
+						<InvertedRadCard
+							tiltEffect
+							glare
+							glareIntensity={1}
+							ctaHeight='40px'
+							ctaWidth='60px'
+							mdCtaHeight='60px'
+							mdCtaWidth='80px'
+							innerRadius={24}
+							mdInnerRadius={36}
+							offsetX={10}
+							offsetY={0}
+							mdOffsetX={20}
+							mdOffsetY={10}>
 							<div
-								id='information'
-								class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full'>
-								{item.split(' ').map((word) => (
-									<span class='block'>{word}</span>
-								))}
+								id='portfolio'
+								class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[343px] relative xl:min-h-[403px]'>
+								<div
+									id='information'
+									class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full z-20'>
+									{item.split(' ').map((word) => (
+										<span class='block'>{word}</span>
+									))}
+								</div>
 							</div>
-						</div>
-						<div
-							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
-							slot='cta-content'>
-							<Icon name='arrow-right' />
-						</div>
-					</InvertedRadCard>
+							<div
+								class='bg-white cursor-pointer duration-300 flex h-8 items-center justify-center rounded-full text-black w-8 md:h-10 md:w-10 hover:bg-accent hover:text-white'
+								slot='cta-content'>
+								<Icon name='arrow-right' />
+							</div>
+						</InvertedRadCard>
+					</div>
 				))
 			}
-		</div>
 
-		<div class='gap-8 grid grid-cols-2 mt-[60px]'>
-			<InvertedRadCard
-				tiltEffect
-				glare
-				ctaHeight='60px'
-				ctaWidth='80px'
-				innerRadius={36}>
-				<div
-					id='portfolio'
-					class='bg-[url(/hero-background.png)] bg-cover bg-center min-h-[403px] relative'>
+			<div
+				id='portfolios2'
+				class='col-span-6 hidden lg:block'>
+				<InvertedRadCard
+					tiltEffect
+					glare
+					glareIntensity={1}
+					ctaHeight='40px'
+					ctaWidth='60px'
+					mdCtaHeight='60px'
+					mdCtaWidth='80px'
+					innerRadius={24}
+					mdInnerRadius={36}
+					offsetX={10}
+					offsetY={0}
+					mdOffsetX={20}
+					mdOffsetY={10}>
 					<div
-						id='information'
-						class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full'>
-						Brand
+						id='portfolio'
+						class='bg-[url(/hero-background.png)] bg-cover bg-center hidden min-h-[403px] relative md:block'>
+						<div
+							id='information'
+							class='absolute bg-black/80 bottom-0 font-bold font-display h-auto left-0 p-5 text-white w-full z-20'>
+							Brand
+						</div>
 					</div>
-				</div>
-				<div
-					class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
-					slot='cta-content'>
-					<Icon name='arrow-right' />
-				</div>
-			</InvertedRadCard>
-			<InvertedRadCard
-				height='100%'
-				offsetX={80}
-				ctaHeight='60px'>
-				<div
-					class='backdrop-blur-lg bg-white/10 flex h-full items-center px-[60px]'>
-					<h4
-						class='font-[700] font-display leading-[64px] text-[40px] text-white'>
-						<span>View All Our</span>
-						<span class='block'> Works</span>
-					</h4>
-				</div>
-				<div
-					class='flex h-[40px] items-center justify-center mr-5'
-					slot='cta-content'>
-					<a
-						href='/'
-						class='font-display leading-[38px] text-white underline'>
-						View All
-					</a>
-				</div>
-			</InvertedRadCard>
+					<div
+						class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
+						slot='cta-content'>
+						<Icon name='arrow-right' />
+					</div>
+				</InvertedRadCard>
+			</div>
+
+			<div
+				id='portfolios2'
+				class='col-span-6'>
+				<InvertedRadCard
+					height='100%'
+					glare
+					offsetX={80}
+					ctaHeight='60px'>
+					<div
+						class='backdrop-blur-lg bg-white/10 flex h-full items-center justify-center min-h-[343px] px-[60px] relative z-20 lg:min-h-[403px]'>
+						<h4
+							class='font-[700] font-display text-[28px] text-white md:leading-[64px] md:text-[40px]'>
+							<span>View All Our</span>
+							<span class='md:block'> Works</span>
+						</h4>
+					</div>
+					<div
+						class='flex h-[40px] items-center justify-center mr-5'
+						slot='cta-content'>
+						<a
+							href='/'
+							class='font-display leading-[38px] text-white underline'>
+							View All
+						</a>
+					</div>
+				</InvertedRadCard>
+			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	#portfolios {
+		height: 100%;
+	}
+</style>

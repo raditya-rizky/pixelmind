@@ -3,44 +3,69 @@ import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
 ---
 
+<script>
+	import { gsap } from 'gsap';
+	import { cardEnterAnimation } from '@utils/index';
+
+	let productCards = gsap.utils.toArray<HTMLElement>('#products');
+	productCards.forEach((card, index) => {
+		cardEnterAnimation({ element: card, index: index });
+	});
+</script>
+
 <section
 	id='card'
-	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
-	<div class='mx-auto px-[120px] py-[100px]'>
+	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[53px] text-white w-fit'>
+			class='font-[700] font-display text-[32px] text-white relative w-fit md:text-[53px]'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Products
 			</span>
 		</h3>
 
-		<div class='gap-8 grid grid-cols-2 mt-20'>
+		<div class='gap-8 grid grid-cols-1 mt-20 lg:grid-cols-2'>
 			{
 				[1, 2].map((item) => (
-					<InvertedRadCard
-						tiltEffect
-						glare
-						ctaHeight='60px'
-						ctaWidth='80px'
-						innerRadius={36}>
-						<div class='bg-[url(/our-products.png)] bg-cover bg-center min-h-[461px]'>
-							<div class='flex justify-center p-8'>
-								<img
-									src='/sehago-logo.png'
-									alt='Logo'
+					<div id='products'>
+						<InvertedRadCard
+							tiltEffect
+							glare
+							ctaHeight='40px'
+							ctaWidth='60px'
+							mdCtaHeight='60px'
+							mdCtaWidth='80px'
+							innerRadius={24}
+							mdInnerRadius={36}
+							offsetX={10}
+							offsetY={0}
+							mdOffsetX={20}
+							mdOffsetY={10}>
+							<div class='bg-[url(/our-products.png)] bg-cover bg-center min-h-[208px] md:min-h-[340px] xl:min-h-[461px]'>
+								<div class='flex justify-center p-4 lg:p-8'>
+									<img
+										src='/sehago-logo.png'
+										alt='Logo'
+										class='max-w-[100px] md:max-w-[180px] lg:max-w-[400px]'
+									/>
+								</div>
+							</div>
+							<div
+								class='bg-white cursor-pointer duration-300 flex h-8 items-center justify-center rounded-full text-black w-8 md:h-10 md:w-10 hover:bg-accent hover:text-white'
+								slot='cta-content'>
+								<Icon
+									name='arrow-right'
+									class='w-3 md:w-4'
 								/>
 							</div>
-						</div>
-						<div
-							class='bg-white cursor-pointer duration-300 flex h-10 items-center justify-center rounded-full text-black w-10 hover:bg-accent hover:text-white'
-							slot='cta-content'>
-							<Icon name='arrow-right' />
-						</div>
-					</InvertedRadCard>
+						</InvertedRadCard>
+					</div>
 				))
 			}
 		</div>
 	</div>
 </section>
+
+<style></style>

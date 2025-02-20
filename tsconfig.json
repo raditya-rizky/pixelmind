@@ -22,6 +22,9 @@
       "@modules/*": [
         "src/modules/*"
       ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
       "@styles/*": [
         "src/styles/*"
       ]
