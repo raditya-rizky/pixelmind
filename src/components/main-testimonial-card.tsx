@@ -19,10 +19,10 @@ export default function MainTestimonialCard({ rating }: { rating: number }) {
               inactiveFillColor: "transparent"
             }}
           />
-          <span className='text-[16px] text-white'>(40+ reviews)</span>
+          <span className='text-[14px] text-white md:text-[16px]'>(40+ reviews)</span>
         </div>
 
-        <h5 className='font-[700] my-10 text-[20px] text-center text-white'>Helping world-class company by creative design.</h5>
+        <h5 className='font-[700] my-10 text-[16px] text-center text-white md:text-[20px]'>Helping world-class company by creative design.</h5>
       </div>
     </div>
   )
