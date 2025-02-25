@@ -28,22 +28,6 @@ import Testimonials from '@components/testimonials.astro';
 			pinSpacing: false,
 		});
 	});
-
-	const targetText = document.querySelectorAll('#target');
-	targetText.forEach((text) =>
-		gsap.from(text, {
-			scrollTrigger: {
-				trigger: text,
-				start: 'top 550px',
-				end: 'bottom top',
-			},
-			duration: 0.6,
-			opacity: 0,
-			ease: 'power2.in',
-			stagger: 0.05,
-			x: 120,
-		})
-	);
 </script>
 
 <Layout>
