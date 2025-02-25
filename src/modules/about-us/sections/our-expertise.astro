@@ -1,26 +1,47 @@
----
-import { Icon } from 'astro-icon/components';
-import InvertedRadCard from '@components/inverted-rad-card.astro';
----
+<script>
+	import { gsap } from 'gsap';
+
+	let numberContent = gsap.utils.toArray<HTMLElement>('#number');
+	numberContent.forEach((number, index) => {
+		gsap.from(number, {
+			scrollTrigger: {
+				trigger: number,
+				start: 'top 550px',
+				end: 'bottom top',
+			},
+			textContent: 0,
+			ease: 'power2.out',
+			snap: { textContent: 1 },
+			stagger: 1,
+			duration: 1.3,
+			delay: index * 0.2,
+		});
+	});
+</script>
 
 <section
 	id='card'
-	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[100px] rounded-ss-[100px]'>
-	<div class='mx-auto px-[120px] py-[100px]'>
+	class='bg-secondary min-h-auto -mt-16 pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] lg:rounded-se-[100px] lg:rounded-ss-[100px]'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h5
-			class='font-bold font-display mb-20 text-[32px] text-white 2xl:text-[40px]'>
+			id='target'
+			class='font-bold font-display mb-20 text-[24px] text-white xl:text-4xl 2xl:text-[40px]'>
 			We are the first call for every outrageous, unthinkable and
 			unknown possibility in the field of digitally immersive experiences — all
 			with highly competitive rates.
 		</h5>
 
 		<div
-			class='divide-background divide-x font-bold font-display grid grid-cols-4 text-white'>
+			class='font-bold font-display gap-y-6 grid grid-cols-2 text-white lg:divide-background lg:divide-x lg:grid-cols-4'>
 			{
 				Array.from({ length: 4 }).map((item) => (
 					<div class='flex flex-col items-center justify-center'>
-						<span class='text-[72px] 2xl:text-[91px]'>45+</span>
-						<span class='text-[32px] 2xl:text-[40px]'>clients</span>
+						<span class='text-[24px] lg:text-[72px] 2xl:text-[91px]'>
+							<span id='number'>45</span>+
+						</span>
+						<span class='text-[24px] lg:text-[32px] 2xl:text-[40px]'>
+							clients
+						</span>
 					</div>
 				))
 			}

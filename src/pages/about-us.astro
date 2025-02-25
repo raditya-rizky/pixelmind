@@ -27,28 +27,10 @@ import OurExpertise from '@modules/about-us/sections/our-expertise.astro';
 			pinSpacing: false,
 		});
 	});
-
-	const targetText = document.querySelectorAll('#target');
-
-	targetText.forEach((text) =>
-		gsap.from(text, {
-			scrollTrigger: {
-				trigger: text,
-				start: 'top 550px',
-				end: 'bottom top',
-			},
-			duration: 0.8,
-			opacity: 0,
-			ease: 'power2.in',
-			stagger: 0.05,
-			x: 40,
-			yoyo: true,
-		})
-	);
 </script>
 
 <Layout>
-	<section class='bg-primary'>
+	<section class='bg-primary overflow-x-hidden'>
 		<!-- Each one of these components has id of "card" -->
 		<Hero />
 		<OurExpertise />
