@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import pixelmindLogoColored from '@assets/pixelmind-logo-colored.png';
+import { Icon } from 'astro-icon/components';
+
+const pages = [
+	{ name: 'About Us', href: '/about-us' },
+	{ name: 'Services', href: '/services' },
+	{ name: 'Work', href: '/work' },
+	{ name: 'Blogs', href: '/blogs' },
+	{ name: 'Contact Us', href: '/contact-us' },
+];
+
+const socialMedia = [
+	{ name: 'Facebook', iconName: 'facebook', href: 'https://www.facebook.com' },
+	{
+		name: 'Instagram',
+		iconName: 'instagram',
+		href: 'https://www.instagram.com',
+	},
+	{ name: 'LinkedIn', iconName: 'linkedin', href: 'https://www.linkedin.com' },
+];
+---
+
+<section
+	id='card'
+	class='light-color-section bg-white min-h-auto -mt-16 pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] lg:rounded-se-[100px] lg:rounded-ss-[100px]'>
+	<div
+		class='grid grid-cols-1 mx-auto px-5 py-[60px] md:px-[120px] md:pb-[60px] md:pt-[200px] lg:divide-background lg:divide-x-2 lg:grid-cols-3'>
+		<div class='pe-10'>
+			<Image
+				src={pixelmindLogoColored}
+				widths={[240, 540, 720, pixelmindLogoColored.width]}
+				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${pixelmindLogoColored.width}px`}
+				alt='Pixelmind Homepage'
+				class='w-[140px] xl:w-[300px] 2xl:w-[400px]'
+			/>
+
+			<div class='flex flex-col gap-4 pt-10'>
+				<span> 2118 Thornridge Cir. Syracuse, Connecticut 35624 </span>
+				<span>sara.cruz@example.com</span>
+				<span>(205) 555-0100</span>
+			</div>
+		</div>
+
+		<div class='h-full pt-10 lg:col-span-2 lg:content-evenly lg:ps-10 lg:pt-0'>
+			<ul class='grid grid-cols-1 text-black lg:grid-cols-5'>
+				{
+					pages.map((page) => (
+						<li class='flex flex-col lg:items-center lg:justify-center'>
+							<a
+								id='target'
+								href={page.href}>
+								{page.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<div class='flex flex-col justify-center gap-4 pt-10 lg:flex-row'>
+				{
+					socialMedia.map((social) => (
+						<a
+							href={social.href}
+							class='block'
+							target='_blank'>
+							<Icon
+								name={social.iconName}
+								class='text-[28px] text-black transition-colors 2xl:text-[32px] hover:!text-accent'
+							/>
+							<span class='sr-only'>{social.name}</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<div class='text-center w-full'>
+		{new Date().getFullYear()} Pixelmind IT Solutions. All Right Reserved
+	</div>
+</section>

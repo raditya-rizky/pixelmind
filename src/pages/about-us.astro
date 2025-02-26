@@ -1,7 +1,7 @@
 ---
 import OurMotto from '@components/our-motto.astro';
 import Testimonials from '@components/testimonials.astro';
-import Layout from '@layouts/Layout.astro';
+import BaseLayout from '@layouts/base-layout.astro';
 import Hero from '@modules/about-us/sections/hero.astro';
 import OurExpertise from '@modules/about-us/sections/our-expertise.astro';
 ---
@@ -29,7 +29,7 @@ import OurExpertise from '@modules/about-us/sections/our-expertise.astro';
 	});
 </script>
 
-<Layout>
+<BaseLayout>
 	<section class='bg-primary overflow-x-hidden'>
 		<!-- Each one of these components has id of "card" -->
 		<Hero />
@@ -37,4 +37,4 @@ import OurExpertise from '@modules/about-us/sections/our-expertise.astro';
 		<OurMotto bgColor='bg-primary' />
 		<Testimonials />
 	</section>
-</Layout>
+</BaseLayout>
