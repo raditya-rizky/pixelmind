@@ -8,6 +8,8 @@ const pages = [
 	{ name: 'Work', href: '/work' },
 	{ name: 'Contact Us', href: '/contact-us' },
 ];
+
+const pathname = Astro.url.pathname;
 ---
 
 <script>
@@ -109,13 +111,13 @@ const pages = [
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
-				header?.classList.add('bg-black/70');
-				header?.classList.remove('bg-white/20');
-				mobileHeader?.classList.add('bg-black/70');
+				header?.classList.add('!bg-black/70');
+				header?.classList.remove('!bg-white/20');
+				mobileHeader?.classList.add('!bg-black/70');
 			} else {
-				header?.classList.remove('bg-black/70');
-				header?.classList.add('bg-white/20');
-				mobileHeader?.classList.remove('bg-black/70');
+				header?.classList.remove('!bg-black/70');
+				header?.classList.add('!bg-white/20');
+				mobileHeader?.classList.remove('!bg-black/70');
 			}
 		});
 	}, observerOptions);
@@ -185,7 +187,7 @@ const pages = [
 	<!-- Desktop -->
 	<div
 		id='navbar'
-		class='backdrop-blur-lg bg-white/20 fixed hidden invisible items-center justify-between left-1/2 max-w-[1054px] mx-auto px-8 py-4 rounded-2xl shadow-xl top-8 transform -translate-x-1/2 w-full z-50 lg:flex 2xl:px-10 2xl:py-6 transition-colors duration-300'>
+		class='backdrop-blur-lg !bg-white/20 fixed hidden invisible items-center justify-between left-1/2 max-w-[1054px] mx-auto px-8 py-4 rounded-2xl shadow-xl top-8 transform -translate-x-1/2 w-full z-50 lg:flex 2xl:px-10 2xl:py-6 transition-colors duration-300'>
 		<a
 			href='/'
 			id='logo'>
@@ -206,8 +208,12 @@ const pages = [
 					pages.map((page) => (
 						<li>
 							<a
+								data-astro-prefetch
 								href={page.href}
-								id='target'>
+								id='target'
+								class={
+									pathname === page.href ? 'font-semibold text-accent' : ''
+								}>
 								{page.name}
 							</a>
 						</li>
