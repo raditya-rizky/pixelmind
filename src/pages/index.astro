@@ -2,7 +2,7 @@
 import OurProducts from '@modules/home/sections/our-products.astro';
 import OurServices from '@modules/home/sections/our-services.astro';
 import Hero from '@modules/home/sections/hero.astro';
-import Layout from '@layouts/Layout.astro';
+import BaseLayout from '@layouts/base-layout.astro';
 import OurPortfolio from '@modules/home/sections/our-portfolio.astro';
 import Form from '@modules/home/sections/form.astro';
 import OurMotto from '@components/our-motto.astro';
@@ -28,25 +28,9 @@ import Testimonials from '@components/testimonials.astro';
 			pinSpacing: false,
 		});
 	});
-
-	const targetText = document.querySelectorAll('#target');
-	targetText.forEach((text) =>
-		gsap.from(text, {
-			scrollTrigger: {
-				trigger: text,
-				start: 'top 550px',
-				end: 'bottom top',
-			},
-			duration: 0.6,
-			opacity: 0,
-			ease: 'power2.in',
-			stagger: 0.05,
-			x: 120,
-		})
-	);
 </script>
 
-<Layout>
+<BaseLayout>
 	<section class='bg-accent/10 overflow-x-hidden'>
 		<!-- Each one of these components has id of "card" -->
 		<Hero />
@@ -57,4 +41,4 @@ import Testimonials from '@components/testimonials.astro';
 		<Testimonials />
 		<Form />
 	</section>
-</Layout>
+</BaseLayout>

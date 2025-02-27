@@ -1,0 +1,219 @@
+---
+import { Image } from 'astro:assets';
+import pixelmindLogo from '@assets/pixelmind-logo.svg';
+
+const pages = [
+	{ name: 'About Us', href: '/about-us' },
+	{ name: 'Services', href: '/services' },
+	{ name: 'Work', href: '/work' },
+	{ name: 'Contact Us', href: '/contact-us' },
+];
+---
+
+<script>
+	import { gsap } from 'gsap';
+	const tl = gsap.timeline();
+
+	// Mobile Nav
+	let menuOpen = false;
+	const menuButton = document.querySelector('#menu-button');
+	const mobileMenu = document.querySelector('#mobile-menu');
+
+	const menuAnimation = gsap.timeline({ paused: true });
+	const hamburgerAnimation = gsap.timeline({ paused: true });
+
+	hamburgerAnimation
+		.to('.line-1', {
+			rotate: 45,
+			y: 8,
+			width: '100%',
+			duration: 0.4,
+			ease: 'power2.inOut',
+		})
+		.to(
+			'.line-2',
+			{
+				opacity: 0,
+				duration: 0.2,
+				ease: 'power2.inOut',
+			},
+			'<'
+		)
+		.to(
+			'.line-3',
+			{
+				rotate: -45,
+				y: -8,
+				width: '100%',
+				duration: 0.4,
+				ease: 'power2.inOut',
+			},
+			'<'
+		);
+
+	menuAnimation.fromTo(
+		'#mobile-menu',
+		{
+			xPercent: 100,
+			opacity: 0,
+			duration: 0.5,
+		},
+		{
+			xPercent: 0,
+			opacity: 1,
+			duration: 0.5,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		}
+	);
+
+	menuButton?.addEventListener('click', () => {
+		menuOpen = !menuOpen;
+		if (menuOpen) {
+			hamburgerAnimation.play();
+			menuAnimation.play();
+		} else {
+			hamburgerAnimation.reverse();
+			menuAnimation.reverse();
+		}
+	});
+
+	// Desktop Nav
+	tl.fromTo(
+		'#navbar',
+		{
+			y: -100,
+			opacity: 0,
+			duration: 0.6,
+			ease: 'power3.out',
+			delay: 0.8,
+		},
+		{
+			y: 0,
+			opacity: 1,
+			duration: 0.6,
+			ease: 'power3.out',
+			delay: 0.8,
+			autoAlpha: 1,
+		}
+	);
+
+	// Header background change on scroll
+	const header = document.querySelector('#navbar');
+	const mobileHeader = document.querySelector('#mobile-header');
+
+	const observerOptions = {
+		threshold: 0.8,
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				header?.classList.add('bg-black/70');
+				header?.classList.remove('bg-white/20');
+				mobileHeader?.classList.add('bg-black/70');
+			} else {
+				header?.classList.remove('bg-black/70');
+				header?.classList.add('bg-white/20');
+				mobileHeader?.classList.remove('bg-black/70');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.light-color-section').forEach((section) => {
+		observer.observe(section);
+	});
+</script>
+
+<header>
+	<!-- Mobile -->
+	<div
+		id='mobile-header'
+		class='backdrop-blur-lg fixed flex justify-between p-4 w-full z-50 lg:hidden transition-colors duration-300'>
+		<a
+			href='/'
+			id='logo'>
+			<Image
+				src={pixelmindLogo}
+				loading='eager'
+				widths={[240, 540, 720, pixelmindLogo.width]}
+				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${pixelmindLogo.width}px`}
+				alt='Pixelmind Homepage'
+				class='w-[140px] xl:w-[200px]'
+			/>
+		</a>
+
+		<button
+			id='menu-button'
+			class='relative z-50'>
+			<div class='flex flex-col items-end h-[18px] relative w-[24px]'>
+				<span
+					class='line-1 absolute bg-white block duration-500 ease-in-out h-0.5 rounded-md top-0 transition w-3/4'
+				></span>
+				<span
+					class='line-2 absolute bg-white block duration-500 ease-in-out h-0.5 rounded-md top-2 transition w-full'
+				></span>
+				<span
+					class='line-3 absolute bg-white block duration-500 ease-in-out h-0.5 rounded-md top-4 transition w-3/5'
+				></span>
+			</div>
+			<span class='sr-only'>Navigation menu</span>
+		</button>
+
+		<div
+			id='mobile-menu'
+			class='fixed invisible top-0 right-0 h-screen w-full bg-accent z-40'>
+			<div class='absolute bg-black/60 h-full top-0 w-full'></div>
+			<nav class='absolute h-full pt-24 px-8'>
+				<ul class='flex flex-col space-y-6 text-white text-2xl'>
+					{
+						pages.map((page) => (
+							<li>
+								<a
+									href={page.href}
+									class='block py-2'>
+									{page.name}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<!-- Desktop -->
+	<div
+		id='navbar'
+		class='backdrop-blur-lg bg-white/20 fixed hidden invisible items-center justify-between left-1/2 max-w-[1054px] mx-auto px-8 py-4 rounded-2xl shadow-xl top-8 transform -translate-x-1/2 w-full z-50 lg:flex 2xl:px-10 2xl:py-6 transition-colors duration-300'>
+		<a
+			href='/'
+			id='logo'>
+			<Image
+				src={pixelmindLogo}
+				loading='eager'
+				widths={[240, 540, 720, pixelmindLogo.width]}
+				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${pixelmindLogo.width}px`}
+				alt='Pixelmind Homepage'
+				class='w-[140px] xl:w-[200px]'
+			/>
+		</a>
+
+		<nav class='h-full'>
+			<ul
+				class='flex font-display items-center justify-between space-x-6 text-white'>
+				{
+					pages.map((page) => (
+						<li>
+							<a
+								href={page.href}
+								id='target'>
+								{page.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>
