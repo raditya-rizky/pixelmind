@@ -1,7 +1,6 @@
 ---
-import '@styles/global.css';
 import { Image } from 'astro:assets';
-import aboutUsHero from '@assets/images/about-us-hero.png';
+import aboutUsHero from '@assets/images/about-us/about-us-hero.png';
 ---
 
 <script>
@@ -16,23 +15,33 @@ import aboutUsHero from '@assets/images/about-us-hero.png';
 		duration: 2,
 		delay: 0.3,
 	});
-	gsap.from('#about-us-hero', {
-		opacity: 0,
-		duration: 1.3,
-		delay: 0.5,
-		xPercent: 100,
-		ease: 'power3.out',
-	});
+	gsap.fromTo(
+		'#about-us-hero',
+		{
+			opacity: 0,
+			duration: 1.3,
+			delay: 0.5,
+			xPercent: 100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			xPercent: 0,
+			duration: 1.3,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		}
+	);
 </script>
 
 <section
 	id='card'
 	class='bg-primary h-[100vh] min-h-full overflow-hidden 2xl:min-h-[883px]'>
 	<div
-		class='container flex flex-col h-full items-center justify-center mx-auto px-[20px] md:flex-row'>
+		class='container flex flex-col h-full items-center justify-center mx-auto pt-20 px-[20px] md:flex-row 2xl:pt-32'>
 		<h1
 			id='target'
-			class='relative'>
+			class='title relative'>
 			<span
 				id='about-us-title'
 				class='absolute font-bold font-display text-[38px] text-white lg:leading-[95px] lg:text-7xl 2xl:text-[91px]'>
@@ -48,7 +57,7 @@ import aboutUsHero from '@assets/images/about-us-hero.png';
 			sizes={`(max-width: 360px) 240px, (max-width: 720px) 320px, (max-width: 1024px) 480px, (max-width: 1600px) 720px, ${aboutUsHero.width}px`}
 			src={aboutUsHero}
 			alt='About Us'
-			class='-translate-x-[8%] md:translate-x-0 xl:translate-x-[10%] xl:!w-[140%]'
+			class='invisible -translate-x-[8%] md:translate-x-0 xl:translate-x-[10%] xl:!w-[140%]'
 			id='about-us-hero'
 		/>
 	</div>
