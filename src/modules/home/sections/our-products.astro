@@ -1,6 +1,18 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
+
+const products = [
+	{
+		image: '/src/assets/images/our-products/gymnago-logo.png',
+		name: 'Gymnago',
+	},
+	{
+		image: '/src/assets/images/our-products/sehago-logo.png',
+		name: 'Sehago',
+	},
+];
 ---
 
 <script>
@@ -19,7 +31,7 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[32px] text-white relative w-fit md:text-[53px]'>
+			class='title font-[700] font-display text-[32px] text-white relative w-fit md:text-[53px]'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Products
@@ -28,7 +40,7 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 
 		<div class='gap-8 grid grid-cols-1 mt-20 lg:grid-cols-2'>
 			{
-				[1, 2].map((item) => (
+				products.map((product) => (
 					<div id='products'>
 						<InvertedRadCard
 							tiltEffect
@@ -43,11 +55,12 @@ import InvertedRadCard from '@components/inverted-rad-card.astro';
 							offsetY={0}
 							mdOffsetX={20}
 							mdOffsetY={10}>
-							<div class='bg-[url(/our-products.png)] bg-cover bg-center min-h-[208px] md:min-h-[340px] xl:min-h-[461px]'>
+							<div class='bg-[url(/src/assets/images/our-products/our-products.png)] bg-cover bg-center min-h-[208px] md:min-h-[340px] xl:min-h-[461px]'>
 								<div class='flex justify-center p-4 lg:p-8'>
 									<img
-										src='/sehago-logo.png'
-										alt='Logo'
+										src={product.image}
+										alt={product.name}
+										loading='lazy'
 										class='max-w-[100px] md:max-w-[180px] lg:max-w-[400px]'
 									/>
 								</div>

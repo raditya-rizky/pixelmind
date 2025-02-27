@@ -7,7 +7,7 @@ const services = [
 		title: 'Strategy and Design',
 		icon: 'arrow-right',
 		list: ['Logo Design', 'Branding', 'Web Design', 'Mobile App Design'],
-		image: '/hero-background.png',
+		image: '/src/assets/images/home/hero-background.png',
 	},
 	{
 		title: 'Coding and Implementation',
@@ -18,7 +18,7 @@ const services = [
 			'Mobile App Development',
 			'E-Commerce',
 		],
-		image: '/hero-background.png',
+		image: '/src/assets/images/home/hero-background.png',
 	},
 	{
 		title: 'Growth and Marketing',
@@ -29,7 +29,7 @@ const services = [
 			'Email Marketing',
 			'Web Based Advertising',
 		],
-		image: '/hero-background.png',
+		image: '/src/assets/images/home/hero-background.png',
 	},
 ];
 ---
@@ -50,7 +50,7 @@ const services = [
 	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
 		<h3
 			id='target'
-			class='font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
+			class='title font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
 			<span>Our</span>
 			<span class="block after:text-accent after:content-['.']">
 				Services
@@ -136,7 +136,13 @@ const services = [
 											<li>{item}</li>
 										))}
 									</ul>
-									<InvertedRadCard>
+									<InvertedRadCard
+										innerRadius={24}
+										mdInnerRadius={36}
+										offsetX={0}
+										offsetY={0}
+										mdOffsetX={20}
+										mdOffsetY={10}>
 										<div
 											class={`bg-[url(${service.image})] bg-cover bg-center min-h-[145px] md:min-h-[195px]`}
 										/>
