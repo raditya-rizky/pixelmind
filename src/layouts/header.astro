@@ -101,8 +101,8 @@ const pathname = Astro.url.pathname;
 	);
 
 	// Header background change on scroll
-	const header = document.querySelector('#navbar');
-	const mobileHeader = document.querySelector('#mobile-header');
+	const header = document.querySelector('#navbar') as HTMLElement;
+	const mobileHeader = document.querySelector('#mobile-header') as HTMLElement;
 
 	const observerOptions = {
 		threshold: 0.8,
@@ -111,13 +111,10 @@ const pathname = Astro.url.pathname;
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
-				header?.classList.add('!bg-black/70');
-				header?.classList.remove('!bg-white/20');
-				mobileHeader?.classList.add('!bg-black/70');
+				header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+				mobileHeader.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
 			} else {
-				header?.classList.remove('!bg-black/70');
-				header?.classList.add('!bg-white/20');
-				mobileHeader?.classList.remove('!bg-black/70');
+				header.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
 			}
 		});
 	}, observerOptions);
@@ -187,7 +184,7 @@ const pathname = Astro.url.pathname;
 	<!-- Desktop -->
 	<div
 		id='navbar'
-		class='backdrop-blur-lg !bg-white/20 fixed hidden invisible items-center justify-between left-1/2 max-w-[1054px] mx-auto px-8 py-4 rounded-2xl shadow-xl top-8 transform -translate-x-1/2 w-full z-50 lg:flex 2xl:px-10 2xl:py-6 transition-colors duration-300'>
+		class='backdrop-blur-lg fixed hidden invisible items-center justify-between left-1/2 max-w-[1054px] mx-auto px-8 py-4 rounded-2xl shadow-xl top-8 transform -translate-x-1/2 w-full z-50 lg:flex 2xl:px-10 2xl:py-6 transition-colors duration-300'>
 		<a
 			href='/'
 			id='logo'>
