@@ -1,0 +1,22 @@
+---
+import FormComponent from '@components/form.astro';
+---
+
+<section
+	id='card'
+	class='bg-accent min-h-auto -mt-24 overflow-hidden pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]'>
+	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
+
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
+		<h3
+			id='target'
+			class='title font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
+			<span>Let's work</span>
+			<span class='block'>together</span>
+		</h3>
+
+		<div class='mt-20'>
+			<FormComponent />
+		</div>
+	</div>
+</section>

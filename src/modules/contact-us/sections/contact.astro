@@ -1,0 +1,59 @@
+---
+import FormComponent from '@components/form.astro';
+---
+
+<section
+	id='card'
+	class='bg-accent min-h-auto -mt-18 overflow-hidden pb-[100px] relative rounded-se-[60px] rounded-ss-[60px] md:rounded-se-[100px] md:rounded-ss-[100px]'>
+	<div class='absolute bg-black/60 h-full top-0 w-full'></div>
+	<div class='mx-auto px-5 py-[60px] relative md:px-[120px] md:py-[100px]'>
+		<h3
+			id='target'
+			class='title font-[700] font-display text-[32px] text-white w-fit md:text-[53px]'>
+			<span>We’ve been</span>
+			<span class='block'>waiting for you</span>
+		</h3>
+
+		<div class='grid grid-cols-1 mt-10 lg:grid-cols-2 lg:mt-20'>
+			<div class='mb-8 mt-3 text-white space-y-10 lg:mb-0 lg:pe-[100px]'>
+				<div class='space-y-4'>
+					<h6 class='font-[500] leading-[38px] text-xl lg:text-2xl'>
+						Location
+					</h6>
+					<span class='leading-[28px] text-sm lg:text-base'>
+						Al Abraj Street, The Binary by Omniyat, Level 21 Office #13, P.O.BOX
+						: 50833, Business Bay, Dubai AE
+					</span>
+					<a
+						href='https://www.google.com/maps/search/?api=1&query=Al+Abraj+Street,+The+Binary+by+Omniyat,+Level+21+Office+%2313,+P.O.BOX+50833,+Business+Bay,+Dubai+AE'
+						target='_blank'
+						class='block leading-[28px] underline'>
+						Get Direction
+					</a>
+				</div>
+
+				<div class='gap-4 grid grid-cols-1 lg:gap-0 lg:grid-cols-2'>
+					<div>
+						<h6 class='font-[500] leading-[38px] text-xl lg:text-2xl'>Email</h6>
+						<a
+							href='mailto:sales@pixelmindit.com'
+							class='block text-sm lg:text-base hover:underline'>
+							sales@pixelmindit.com
+						</a>
+					</div>
+
+					<div>
+						<h6 class='font-[500] leading-[38px] text-xl lg:text-2xl'>Phone</h6>
+						<a
+							href='tel:+97339611888'
+							class='block text-sm lg:text-base hover:underline'>
+							+973 3961 1888
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<FormComponent buttonPosition='left' />
+		</div>
+	</div>
+</section>
