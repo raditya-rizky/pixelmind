@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import pixelmindLogo from '@assets/pixelmind-logo.svg';
+import { cnb } from 'cnbuilder';
 
 const pages = [
 	{ name: 'About Us', href: '/about-us' },
@@ -115,6 +116,7 @@ const pathname = Astro.url.pathname;
 				mobileHeader.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
 			} else {
 				header.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+				mobileHeader.style.backgroundColor = '';
 			}
 		});
 	}, observerOptions);
@@ -199,8 +201,7 @@ const pathname = Astro.url.pathname;
 		</a>
 
 		<nav class='h-full'>
-			<ul
-				class='flex font-display items-center justify-between space-x-6 text-white'>
+			<ul class='flex items-center justify-between space-x-6 text-white'>
 				{
 					pages.map((page) => (
 						<li>
@@ -208,9 +209,9 @@ const pathname = Astro.url.pathname;
 								data-astro-prefetch
 								href={page.href}
 								id='target'
-								class={
-									pathname === page.href ? 'font-semibold text-accent' : ''
-								}>
+								class={cnb(
+									pathname === page.href && 'font-semibold text-accent'
+								)}>
 								{page.name}
 							</a>
 						</li>

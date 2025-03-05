@@ -1,0 +1,85 @@
+---
+const infos = [
+	{
+		title: 'Established for',
+		number: 8,
+		name: 'Years',
+	},
+	{
+		title: 'Work Accross',
+		number: 6,
+		name: 'Countries',
+	},
+	{
+		title: 'Over',
+		number: 15,
+		name: 'Projects',
+	},
+];
+---
+
+<script>
+	import { gsap } from 'gsap';
+
+	let numberContent = gsap.utils.toArray<HTMLElement>('#number');
+	numberContent.forEach((number, index) => {
+		gsap.from(number, {
+			scrollTrigger: {
+				trigger: number,
+				start: 'top 550px',
+				end: 'bottom top',
+			},
+			textContent: 0,
+			ease: 'power2.out',
+			snap: { textContent: 1 },
+			stagger: {
+				each: 1.0,
+				onUpdate: () => {
+					if (number.textContent !== null) {
+						number.textContent = Math.round(Number(number.textContent))
+							.toString()
+							.padStart(2, '0');
+					}
+				},
+			},
+			duration: 1.5,
+			delay: index * 0.2,
+		});
+	});
+</script>
+
+<section
+	id='card'
+	class='bg-secondary min-h-auto -mt-16 pb-10 relative rounded-se-[60px] rounded-ss-[60px] lg:pb-[100px] lg:rounded-se-[100px] lg:rounded-ss-[100px]'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
+		<h5
+			id='target'
+			class='title font-bold font-display mb-10 text-[16px] text-white lg:mb-20 lg:text-4xl 2xl:text-[40px]'>
+			We are a team of passionate and crazy individuals dedicated to bringing
+			your ideas to life. With a keen eye for aesthetics, attention to detail,
+			and a deep understanding of design principles, we strive to deliver
+			exceptional results that exceed your expectations.
+		</h5>
+
+		<div
+			class='divide-background divide-y font-bold font-display gap-y-5 grid grid-cols-1 text-white lg:divide-x lg:divide-y-0 lg:gap-y-6 lg:grid-cols-3'>
+			{
+				infos.map(({ title, name, number }) => (
+					<div class='flex flex-col items-center justify-center pb-4 px-2 md:items-start lg:pb-0 lg:px-6 '>
+						<span class='text-[24px] lg:text-[28px] 2xl:text-[31px]'>
+							{title}
+						</span>
+						<span class=''>
+							<span
+								id='number'
+								class='text-[16px] md:text-[32px] lg:text-[72px] 2xl:text-[91px]'>
+								{number}
+							</span>
+							<span class='text-[8px] lg:text-base'>{name}</span>
+						</span>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

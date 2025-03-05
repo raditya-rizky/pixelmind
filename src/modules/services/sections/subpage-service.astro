@@ -1,0 +1,157 @@
+<script>
+	import { gsap } from 'gsap';
+
+	const tl = gsap.timeline();
+
+	tl.to('#service-title', {
+		text: 'Strategy and Design',
+		duration: 2,
+		delay: 0.3,
+	});
+
+	tl.fromTo(
+		'#service',
+		{
+			opacity: 0,
+			duration: 1.3,
+			delay: 0.5,
+			xPercent: -100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			xPercent: 0,
+			duration: 1.3,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		}
+	);
+
+	tl.fromTo(
+		'#bg-1',
+		{
+			opacity: 0,
+			duration: 1.3,
+			delay: 0.5,
+			xPercent: 100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			xPercent: 0,
+			duration: 1.3,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		},
+		'<'
+	);
+
+	tl.fromTo(
+		'#bg-2',
+		{
+			opacity: 0,
+			duration: 1.3,
+			delay: 0.5,
+			xPercent: -100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			xPercent: 0,
+			duration: 1.3,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		}
+	);
+
+	tl.fromTo(
+		'#why-section',
+		{
+			opacity: 0,
+			duration: 1.3,
+			delay: 0.5,
+			xPercent: 100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			xPercent: 0,
+			duration: 1.3,
+			ease: 'power3.out',
+			autoAlpha: 1,
+		},
+		'<'
+	);
+</script>
+
+<section
+	id='card'
+	class='bg-primary min-h-[100vh] overflow-hidden pb-40 pt-18 lg:min-h-fit 2xl:min-h-[883px]'>
+	<div
+		class='h-full mx-auto pt-20 px-[20px] relative md:flex-row lg:px-[120px] 2xl:pt-32'>
+		<h1
+			id='target'
+			class='title max-w-[856px] relative'>
+			<span
+				id='service-title'
+				class='absolute font-bold font-display text-[38px] text-white lg:leading-[95px] lg:text-7xl 2xl:text-[91px]'>
+			</span>
+			<span
+				class='block font-bold font-display invisible text-[38px] text-white lg:leading-[95px] lg:text-7xl 2xl:text-[91px]'>
+				Strategy and Design
+			</span>
+		</h1>
+
+		<div class='mt-[60px] space-y-8'>
+			<div class='gap-8 grid grid-cols-1 lg:grid-cols-5'>
+				<div
+					id='service'
+					class='bg-secondary invisible p-5 rounded-[40px] space-y-5 lg:col-span-3 lg:p-10'>
+					<h2 class='font-bold font-display text-white text-2xl lg:text-[40px]'>
+						Crafting Vision into Reality
+					</h2>
+					<p class='text-white'>
+						At Pixelmind IT Solutions, we believe that great design starts with
+						a solid strategy. Our team of passionate designers and strategists
+						work closely with you to understand your vision, goals, and
+						audience. We transform ideas into compelling designs that resonate
+						with your brand and drive results.
+					</p>
+				</div>
+
+				<div
+					id='bg-1'
+					class='bg-background col-span-2 h-full hidden invisible rounded-[40px] w-full lg:block'>
+				</div>
+			</div>
+
+			<div class='gap-8 grid grid-cols-1 lg:grid-cols-5'>
+				<div
+					id='bg-2'
+					class='bg-background h-full hidden rounded-[40px] w-full lg:block'>
+				</div>
+				<div
+					id='why-section'
+					class='bg-secondary p-5 rounded-[40px] space-y-5 lg:col-span-4 lg:p-10'>
+					<h3 class='font-bold font-display text-white text-2xl lg:text-[40px]'>
+						Why Choose Us?
+					</h3>
+					<ul class='list-disc ps-10 text-white'>
+						<li>
+							Collaborative Process: We work closely with you at every stage to
+							ensure your vision is brought to life.
+						</li>
+						<li>
+							Attention to Detail: Every pixel matters. We focus on the finer
+							details to deliver exceptional results.
+						</li>
+						<li>
+							Proven Expertise: With years of experience, we’ve helped numerous
+							brands elevate their design and strategy.
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
