@@ -1,0 +1,125 @@
+---
+const expertise = [
+	{
+		title: 'Brand Strategy',
+		desc: 'We help you define your brand identity, positioning, and messaging to stand out in the market.',
+	},
+	{
+		title: 'UI/UX Design',
+		desc: 'We create user-friendly and visually appealing designs to enhance user experience and engagement.',
+	},
+	{
+		title: 'Visual Design',
+		desc: 'We craft visually stunning designs that communicate your brand message effectively.',
+	},
+	{
+		title: 'Design Systems',
+		desc: 'We develop comprehensive design systems to ensure consistency and scalability across your products.',
+	},
+];
+---
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	gsap.registerPlugin(ScrollTrigger);
+
+	let accordions = gsap.utils.toArray<HTMLElement>('#accordion');
+	accordions.forEach((accordion, index) => {
+		gsap.from(accordion, {
+			scrollTrigger: {
+				trigger: '#accordion-container',
+				start: 'top 80%',
+				end: 'bottom top',
+			},
+			ease: 'elastic.out(1,0.75)',
+			xPercent: 100,
+			duration: 1.5,
+			delay: index * 0.3,
+			opacity: 0,
+		});
+	});
+
+	document.querySelectorAll('[data-accordion]').forEach((button) => {
+		const content = button.nextElementSibling;
+		gsap.set(content, { height: 0 });
+
+		button.addEventListener('click', () => {
+			const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+			// Close all other accordions
+			document.querySelectorAll('[data-accordion]').forEach((otherButton) => {
+				if (
+					otherButton !== button &&
+					otherButton.getAttribute('aria-expanded') === 'true'
+				) {
+					otherButton.setAttribute('aria-expanded', 'false');
+					gsap.to(otherButton.nextElementSibling, {
+						height: 0,
+						duration: 0.3,
+						ease: 'power2.out',
+					});
+				}
+			});
+
+			// Toggle current accordion
+			button.setAttribute('aria-expanded', (!isExpanded).toString());
+			gsap.to(content, {
+				height: !isExpanded ? 'auto' : 0,
+				duration: 0.3,
+				ease: 'power2.out',
+			});
+		});
+	});
+</script>
+
+<section
+	id='card'
+	class='bg-secondary min-h-auto -mt-16 pb-10 relative rounded-se-[60px] rounded-ss-[60px] lg:pb-[100px] lg:rounded-se-[100px] lg:rounded-ss-[100px]'>
+	<div class='mx-auto px-5 py-[60px] md:px-[120px] md:py-[100px]'>
+		<div class='gap-20 lg:grid lg:grid-cols-5'>
+			<div
+				class='bg-background col-span-2 h-full min-h-[300px] rounded-[40px] w-full lg:min-h-full'>
+			</div>
+			<div class='col-span-3'>
+				<div
+					id='accordion-container'
+					class='divide-y divide-background flex flex-col'>
+					{
+						expertise.map(({ title, desc }, index) => (
+							<div
+								id='accordion'
+								class='accordion-item overflow-hidden'>
+								<button
+									class='w-full flex justify-between items-center py-6 cursor-pointer group'
+									data-accordion={`accordion-${index}`}>
+									<h2 class='font-bold font-display text-white text-2xl lg:text-[40px]'>
+										{index + 1}. {title}
+									</h2>
+									<span class='text-white text-2xl transform group-aria-expanded:rotate-45 transition-transform'>
+										+
+									</span>
+								</button>
+								<div
+									class='accordion-content overflow-hidden h-0'
+									data-content={`content-${index}`}>
+									<p class='text-white pb-6'>{desc}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.accordion-item button {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.accordion-content {
+		will-change: height;
+	}
+</style>

@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import servicesHero from '@assets/images/services/services-hero.png';
+---
+
+<script>
+	import { gsap } from 'gsap';
+	import { TextPlugin } from 'gsap/TextPlugin';
+	gsap.registerPlugin(TextPlugin);
+
+	const tl = gsap.timeline();
+
+	tl.to('#services-title', {
+		text: 'Discovery the creativity & skills!',
+		duration: 2,
+		delay: 0.3,
+	});
+
+	const path = document.querySelector('#path') as SVGPathElement;
+	const length = path.getTotalLength();
+
+	gsap.set(path, {
+		strokeDashoffset: length,
+		strokeDasharray: length,
+	});
+
+	tl.to(path, {
+		strokeDashoffset: 0,
+		duration: 2,
+		autoAlpha: 1,
+		ease: 'power3.out',
+	});
+
+	tl.fromTo(
+		'#services-hero',
+		{
+			opacity: 0,
+			yPercent: 100,
+			ease: 'power3.out',
+		},
+		{
+			opacity: 1,
+			yPercent: 0,
+			ease: 'power3.out',
+			autoAlpha: 1,
+			stagger: 0.2,
+		},
+		'-=1'
+	);
+</script>
+
+<section
+	id='card'
+	class='bg-primary min-h-[100vh] overflow-hidden lg:-mb-32 lg:!min-h-fit 2xl:min-h-[883px]'>
+	<div
+		class='h-full mx-auto pt-20 px-[20px] relative md:flex-row lg:px-[120px] 2xl:pt-32'>
+		<div class='flex lg:items-center'>
+			<h1
+				id='target'
+				class='title max-w-[856px] relative'>
+				<span
+					id='services-title'
+					class='absolute font-bold font-display text-[38px] text-white lg:leading-[95px] lg:text-7xl 2xl:text-[91px]'>
+				</span>
+				<span
+					class='block font-bold font-display invisible text-[38px] text-white lg:leading-[95px] lg:text-7xl 2xl:text-[91px]'>
+					Discovery the creativity & skills!
+				</span>
+			</h1>
+			<svg
+				width='133'
+				height='135'
+				viewBox='0 0 133 135'
+				fill='none'
+				xmlns='http://www.w3.org/2000/svg'
+				class='mt-40 md:mt-20 lg:mt-64'>
+				<path
+					id='path'
+					class='invisible'
+					d='M3.16603 3.34962C49.1419 10.9838 130.451 17.2225 123.431 82.269C121.711 98.2034 112.207 108.446 102.549 120.378C102.131 120.893 90.5552 131.278 90.5677 129.108C90.6011 123.298 90.2712 89.0582 90.2723 111.26C90.2724 113.609 87.5807 129.557 89.4957 131.107C94.7131 135.33 123.062 126.516 130.124 125.772'
+					stroke='white'
+					stroke-width='5'
+					stroke-linecap='round'
+				></path>
+			</svg>
+		</div>
+
+		<Image
+			loading='eager'
+			widths={[240, 320, 320, 920, servicesHero.width]}
+			sizes={`(max-width: 360px) 240px, (max-width: 720px) 320px, (max-width: 1024px) 480px, (max-width: 1600px) 720px, ${servicesHero.width}px`}
+			src={servicesHero}
+			alt='Service Hero'
+			class='invisible rounded-[20px] w-full lg:mt-10 lg:rounded-[60px]'
+			id='services-hero'
+		/>
+	</div>
+</section>
