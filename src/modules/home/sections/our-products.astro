@@ -2,14 +2,16 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import InvertedRadCard from '@components/inverted-rad-card.astro';
+import product1 from '/src/assets/images/our-products/gymnago-logo.png';
+import product2 from '/src/assets/images/our-products/sehago-logo.png';
 
 const products = [
 	{
-		image: '/src/assets/images/our-products/gymnago-logo.png',
+		image: product1,
 		name: 'Gymnago',
 	},
 	{
-		image: '/src/assets/images/our-products/sehago-logo.png',
+		image: product2,
 		name: 'Sehago',
 	},
 ];
@@ -57,7 +59,7 @@ const products = [
 							mdOffsetY={10}>
 							<div class='bg-[url(/src/assets/images/our-products/our-products.png)] bg-cover bg-center min-h-[208px] md:min-h-[340px] xl:min-h-[461px]'>
 								<div class='flex justify-center p-4 lg:p-8'>
-									<img
+									<Image
 										src={product.image}
 										alt={product.name}
 										loading='lazy'
