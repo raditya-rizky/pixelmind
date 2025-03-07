@@ -10,8 +10,8 @@ export function cardEnterAnimation({
 		gsap.from(element, {
 			scrollTrigger: {
 				trigger: element,
-				start: 'top 550px',
-				end: 'bottom top',
+				start: 'top 80%',
+				end: 'bottom 80%',
 			},
 			opacity: 0,
 			delay: index * 0.5, // Stagger the animations by 0.5 seconds

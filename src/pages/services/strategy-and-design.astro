@@ -1,18 +1,18 @@
 ---
-import OurProducts from '@modules/home/sections/our-products.astro';
-import OurServices from '@modules/home/sections/our-services.astro';
-import Hero from '@modules/home/sections/hero.astro';
+import { Image } from 'astro:assets';
+import servicesHero from '@assets/images/services/services-hero.png';
 import BaseLayout from '@layouts/base-layout.astro';
-import OurMotto from '@components/our-motto.astro';
-import Testimonials from '@components/testimonials.astro';
-import FormContainer from '@components/form-container.astro';
+import SubpageService from '@modules/services/sections/subpage-service.astro';
+import SubpageExpertise from '@modules/services/sections/subpage-expertise.astro';
 import OurWorks from '@components/our-works.astro';
+import FormContainer from '@components/form-container.astro';
 ---
 
 <script>
 	import { gsap } from 'gsap';
+	import { TextPlugin } from 'gsap/TextPlugin';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-	gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
 	let panels = gsap.utils.toArray<HTMLElement>('#card');
 	// we'll create a ScrollTrigger for each panel just to track when each panel's top hits the top of the viewport (we only need this for snapping)
@@ -28,17 +28,21 @@ import OurWorks from '@components/our-works.astro';
 			pinSpacing: false,
 		});
 	});
+
+	const tl = gsap.timeline();
+
+	tl.to('#service-title', {
+		text: 'Strategy and Design',
+		duration: 2,
+		delay: 0.3,
+	});
 </script>
 
 <BaseLayout>
-	<section class='bg-accent/10 overflow-x-hidden'>
-		<!-- Each one of these components has id of "card" -->
-		<Hero />
-		<OurProducts />
-		<OurServices />
-		<OurMotto />
+	<section class='overflow-x-hidden'>
+		<SubpageService />
+		<SubpageExpertise />
 		<OurWorks />
-		<Testimonials />
 		<FormContainer />
 	</section>
 </BaseLayout>
